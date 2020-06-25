@@ -1,42 +1,42 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/tutorial.service";
+import AsignacionDataService from "../services/asignacion.service";
 import { Link } from "react-router-dom";
 
-export default class TutorialsList extends Component {
+export default class AsignacionsList extends Component {
   constructor(props) {
     super(props);
-    this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
-    this.retrieveTutorials = this.retrieveTutorials.bind(this);
+    this.onChangeSearchEstado = this.onChangeSearchEstado.bind(this);
+    this.retrieveAsignacions = this.retrieveAsignacions.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
-    this.searchTitle = this.searchTitle.bind(this);
+    this.setActiveAsignacion = this.setActiveAsignacion.bind(this);
+    this.removeAllAsignacions = this.removeAllAsignacions.bind(this);
+    this.searchEstado = this.searchEstado.bind(this);
 
     this.state = {
-      tutorials: [],
-      currentTutorial: null,
+      asignacions: [],
+      currentAsignacion: null,
       currentIndex: -1,
-      searchTitle: ""
+      searchEstado: ""
     };
   }
 
   componentDidMount() {
-    this.retrieveTutorials();
+    this.retrieveAsignacions();
   }
 
-  onChangeSearchTitle(e) {
-    const searchTitle = e.target.value;
+  onChangeSearchEstado(e) {
+    const searchEstado = e.target.value;
 
     this.setState({
-      searchTitle: searchTitle
+      searchEstado: searchEstado
     });
   }
 
-  retrieveTutorials() {
-    TutorialDataService.getAll()
+  retrieveAsignacions() {
+    AsignacionDataService.getAll()
       .then(response => {
         this.setState({
-          tutorials: response.data
+          asignacions: response.data
         });
         console.log(response.data);
       })
@@ -46,22 +46,22 @@ export default class TutorialsList extends Component {
   }
 
   refreshList() {
-    this.retrieveTutorials();
+    this.retrieveAsignacions();
     this.setState({
-      currentTutorial: null,
+      currentAsignacion: null,
       currentIndex: -1
     });
   }
 
-  setActiveTutorial(tutorial, index) {
+  setActiveAsignacion(asignacion, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currentAsignacion: asignacion,
       currentIndex: index
     });
   }
 
-  removeAllTutorials() {
-    TutorialDataService.deleteAll()
+  removeAllAsignacions() {
+    AsignacionDataService.deleteAll()
       .then(response => {
         console.log(response.data);
         this.refreshList();
@@ -71,11 +71,11 @@ export default class TutorialsList extends Component {
       });
   }
 
-  searchTitle() {
-    TutorialDataService.findByTitle(this.state.searchTitle)
+  searchEstado() {
+    AsignacionDataService.findByEstado(this.state.searchEstado)
       .then(response => {
         this.setState({
-          tutorials: response.data
+          asignacions: response.data
         });
         console.log(response.data);
       })
@@ -85,7 +85,7 @@ export default class TutorialsList extends Component {
   }
 
   render() {
-    const { searchTitle, tutorials, currentTutorial, currentIndex } = this.state;
+    const { searchEstado, asignacions, currentAsignacion, currentIndex } = this.state;
 
     return (
       <div className="list row">
@@ -95,14 +95,14 @@ export default class TutorialsList extends Component {
               type="text"
               className="form-control"
               placeholder="Search by title"
-              value={searchTitle}
-              onChange={this.onChangeSearchTitle}
+              value={searchEstado}
+              onChange={this.onChangeSearchEstado}
             />
             <div className="input-group-append">
               <button
                 className="btn btn-outline-secondary"
                 type="button"
-                onClick={this.searchTitle}
+                onClick={this.searchEstado}
               >
                 Search
               </button>
@@ -110,55 +110,55 @@ export default class TutorialsList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorials List</h4>
+          <h4>Asignacions List</h4>
 
           <ul className="list-group">
-            {tutorials &&
-              tutorials.map((tutorial, index) => (
+            {asignacions &&
+              asignacions.map((asignacion, index) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveTutorial(tutorial, index)}
+                  onClick={() => this.setActiveAsignacion(asignacion, index)}
                   key={index}
                 >
-                  {tutorial.title}
+                  {asignacion.id_user}
                 </li>
               ))}
           </ul>
           
           <button className="m-3 btn btn-sm btn-danger">
-            <Link to={"/tutorials/add"}>
+            <Link to={"/asignacions/add"}>
               Add
             </Link>
           </button>
         </div>
         <div className="col-md-6">
-          {currentTutorial ? (
+          {currentAsignacion ? (
             <div>
-              <h4>Tutorial</h4>
+              <h4>Asignacion</h4>
               <div>
                 <label>
-                  <strong>Title:</strong>
+                  <strong>Id_user:</strong>
                 </label>{" "}
-                {currentTutorial.title}
+                {currentAsignacion.id_user}
               </div>
               <div>
                 <label>
-                  <strong>Description:</strong>
+                  <strong>Id_user:</strong>
                 </label>{" "}
-                {currentTutorial.description}
+                {currentAsignacion.id_user}
               </div>
               <div>
                 <label>
-                  <strong>Status:</strong>
+                  <strong>Estado:</strong>
                 </label>{" "}
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentAsignacion.estado}
               </div>
 
               <Link
-                to={"/tutorials/" + currentTutorial.id}
+                to={"/asignacions/" + currentAsignacion.id}
                 className="badge badge-warning"
               >
                 Edit
@@ -167,7 +167,7 @@ export default class TutorialsList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorial...</p>
+              <p>Please click on a Asignacion...</p>
             </div>
           )}
         </div>

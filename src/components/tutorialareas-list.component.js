@@ -1,42 +1,42 @@
 import React, { Component } from "react";
-import TutorialDataService from "../services/tutorial.service";
+import TutorialareaDataService from "../services/tutorialarea.service";
 import { Link } from "react-router-dom";
 
-export default class TutorialsList extends Component {
+export default class TutorialareasList extends Component {
   constructor(props) {
     super(props);
-    this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
-    this.retrieveTutorials = this.retrieveTutorials.bind(this);
+    this.onChangeSearchId_tutorial = this.onChangeSearchId_tutorial.bind(this);
+    this.retrieveTutorialareas = this.retrieveTutorialareas.bind(this);
     this.refreshList = this.refreshList.bind(this);
-    this.setActiveTutorial = this.setActiveTutorial.bind(this);
-    this.removeAllTutorials = this.removeAllTutorials.bind(this);
-    this.searchTitle = this.searchTitle.bind(this);
+    this.setActiveTutorialarea = this.setActiveTutorialarea.bind(this);
+    this.removeAllTutorialareas = this.removeAllTutorialareas.bind(this);
+    this.searchId_tutorial = this.searchId_tutorial.bind(this);
 
     this.state = {
-      tutorials: [],
-      currentTutorial: null,
-      currentIndex: -1,
-      searchTitle: ""
+        tutorialareas: [],
+        currentTutorialarea: null,
+        currentIndex: -1,
+        searchId_tutorial: ""
     };
   }
 
   componentDidMount() {
-    this.retrieveTutorials();
+    this.retrieveTutorialareas();
   }
 
-  onChangeSearchTitle(e) {
-    const searchTitle = e.target.value;
+  onChangeSearchId_tutorial(e) {
+    const searchId_tutorial = e.target.value;
 
     this.setState({
-      searchTitle: searchTitle
+      searchId_tutorial: searchId_tutorial
     });
   }
 
-  retrieveTutorials() {
-    TutorialDataService.getAll()
+  retrieveTutorialareas() {
+    TutorialareaDataService.getAll()
       .then(response => {
         this.setState({
-          tutorials: response.data
+          tutorialareas: response.data
         });
         console.log(response.data);
       })
@@ -46,22 +46,22 @@ export default class TutorialsList extends Component {
   }
 
   refreshList() {
-    this.retrieveTutorials();
+    this.retrieveTutorialareas();
     this.setState({
-      currentTutorial: null,
+      currentTutorialarea: null,
       currentIndex: -1
     });
   }
 
-  setActiveTutorial(tutorial, index) {
+  setActiveTutorialarea(tutorialarea, index) {
     this.setState({
-      currentTutorial: tutorial,
+      currentTutorialarea: tutorialarea,
       currentIndex: index
     });
   }
 
-  removeAllTutorials() {
-    TutorialDataService.deleteAll()
+  removeAllTutorialareas() {
+    TutorialareaDataService.deleteAll()
       .then(response => {
         console.log(response.data);
         this.refreshList();
@@ -71,8 +71,8 @@ export default class TutorialsList extends Component {
       });
   }
 
-  searchTitle() {
-    TutorialDataService.findByTitle(this.state.searchTitle)
+  searchId_tutorial() {
+    TutorialareaDataService.findById_tutorial(this.state.searchId_tutorial)
       .then(response => {
         this.setState({
           tutorials: response.data
@@ -85,7 +85,7 @@ export default class TutorialsList extends Component {
   }
 
   render() {
-    const { searchTitle, tutorials, currentTutorial, currentIndex } = this.state;
+    const { searchId_tutorial, tutorialareas, currentTutorialarea, currentIndex } = this.state;
 
     return (
       <div className="list row">
@@ -95,14 +95,14 @@ export default class TutorialsList extends Component {
               type="text"
               className="form-control"
               placeholder="Search by title"
-              value={searchTitle}
-              onChange={this.onChangeSearchTitle}
+              value={searchId_tutorial}
+              onChange={this.onChangeSearchId_tutorial}
             />
             <div className="input-group-append">
               <button
                 className="btn btn-outline-secondary"
                 type="button"
-                onClick={this.searchTitle}
+                onClick={this.searchId_tutorial}
               >
                 Search
               </button>
@@ -110,55 +110,49 @@ export default class TutorialsList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorials List</h4>
+          <h4>Tutorial-areas List</h4>
 
           <ul className="list-group">
-            {tutorials &&
-              tutorials.map((tutorial, index) => (
+            {tutorialareas &&
+              tutorialareas.map((tutorialarea, index) => (
                 <li
                   className={
                     "list-group-item " +
                     (index === currentIndex ? "active" : "")
                   }
-                  onClick={() => this.setActiveTutorial(tutorial, index)}
+                  onClick={() => this.setActiveTutorialarea(tutorialarea, index)}
                   key={index}
                 >
-                  {tutorial.title}
+                  {tutorialarea.id_tutorial}
                 </li>
               ))}
           </ul>
           
           <button className="m-3 btn btn-sm btn-danger">
-            <Link to={"/tutorials/add"}>
+            <Link to={"/tutorialareas/add"}>
               Add
             </Link>
           </button>
         </div>
         <div className="col-md-6">
-          {currentTutorial ? (
+          {currentTutorialarea ? (
             <div>
-              <h4>Tutorial</h4>
+              <h4>Tutorial-area</h4>
               <div>
                 <label>
-                  <strong>Title:</strong>
+                  <strong>Id_tutorial:</strong>
                 </label>{" "}
-                {currentTutorial.title}
+                {currentTutorialarea.id_tutorial}
               </div>
               <div>
                 <label>
-                  <strong>Description:</strong>
+                  <strong>Id_area:</strong>
                 </label>{" "}
-                {currentTutorial.description}
-              </div>
-              <div>
-                <label>
-                  <strong>Status:</strong>
-                </label>{" "}
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentTutorialarea.id_area}
               </div>
 
               <Link
-                to={"/tutorials/" + currentTutorial.id}
+                to={"/tutorialareas/" + currentTutorialarea.id}
                 className="badge badge-warning"
               >
                 Edit
@@ -167,7 +161,7 @@ export default class TutorialsList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorial...</p>
+              <p>Please click on a Tutorialarea...</p>
             </div>
           )}
         </div>
