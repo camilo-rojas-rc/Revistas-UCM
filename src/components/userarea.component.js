@@ -13,8 +13,8 @@ export default class Userarea extends Component {
     this.state = {
       currentUserarea: {
         id: null,
-        id_user: "null",
-        id_area: "null"
+        userId: "null",
+        areaId: "null"
       },
       message: ""
     };
@@ -25,25 +25,25 @@ export default class Userarea extends Component {
   }
 
   onChangeId_user(e) {
-    const id_user = e.target.value;
+    const userId = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentUserarea: {
           ...prevState.currentUserarea,
-          id_user: id_user
+          userId: userId
         }
       };
     });
   }
 
   onChangeId_area(e) {
-    const id_area = e.target.value;
+    const areaId = e.target.value;
     
     this.setState(prevState => ({
       currentUserarea: {
         ...prevState.currentUserarea,
-        id_area: id_area
+        areaId: areaId
       }
     }));
   }
@@ -98,22 +98,22 @@ export default class Userarea extends Component {
             <h4>User-area</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="id_user">Id_user</label>
+                <label htmlFor="userId">userId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_user"
-                  value={currentUserarea.id_user}
+                  id="userId"
+                  value={currentUserarea.userId}
                   onChange={this.onChangeId_user}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="id_area">Id_area</label>
+                <label htmlFor="areaId">areaId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_area"
-                  value={currentUserarea.id_area}
+                  id="areaId"
+                  value={currentUserarea.areaId}
                   onChange={this.onChangeId_area}
                 />
               </div>

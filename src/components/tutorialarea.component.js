@@ -13,8 +13,8 @@ export default class Tutorialarea extends Component {
     this.state = {
       currentTutorialarea: {
         id: null,
-        id_tutorial: "null",
-        id_area: "null"
+        revistaId: "null",
+        areaId: "null"
       },
       message: ""
     };
@@ -25,25 +25,25 @@ export default class Tutorialarea extends Component {
   }
 
   onChangeId_tutorial(e) {
-    const id_tutorial = e.target.value;
+    const revistaId = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentTutorialarea: {
           ...prevState.currentTutorialarea,
-          id_tutorial: id_tutorial
+          revistaId: revistaId
         }
       };
     });
   }
 
   onChangeId_area(e) {
-    const id_area = e.target.value;
+    const areaId = e.target.value;
     
     this.setState(prevState => ({
       currentTutorialarea: {
         ...prevState.currentTutorialarea,
-        id_area: id_area
+        areaId: areaId
       }
     }));
   }
@@ -69,7 +69,7 @@ export default class Tutorialarea extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({
-          message: "The Tutorialarea was updated successfully!"
+          message: "Revista-area actualizada!"
         });
       })
       .catch(e => {
@@ -95,25 +95,25 @@ export default class Tutorialarea extends Component {
       <div>
         {currentTutorialarea? (
           <div className="edit-form">
-            <h4>Tutorial-area</h4>
+            <h4>Revista-area</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="id_tutorial">Id_tutorial</label>
+                <label htmlFor="revistaId">revistaId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_tutorial"
-                  value={currentTutorialarea.id_tutorial}
+                  id="revistaId"
+                  value={currentTutorialarea.revistaId}
                   onChange={this.onChangeId_tutorial}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="id_area">Id_area</label>
+                <label htmlFor="areaId">areaId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_area"
-                  value={currentTutorialarea.id_area}
+                  id="areaId"
+                  value={currentTutorialarea.areaId}
                   onChange={this.onChangeId_area}
                 />
               </div>
@@ -139,7 +139,7 @@ export default class Tutorialarea extends Component {
         ) : (
           <div>
             <br />
-            <p>Please click on a Tutorialarea...</p>
+            <p>Please click on a Revista-area...</p>
           </div>
         )}
       </div>

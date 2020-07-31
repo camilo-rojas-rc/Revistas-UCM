@@ -20,17 +20,17 @@ export default class AddUser extends Component {
 
     this.state = {
         id: null,
-        name: "",
+        nombre: "",
         email: "",
         password: "",
-        lastname1: "",
-        lastname2: "",
-        organization: "",
-        department: "",
-        country: "",
-        phone: "",
-        biography: "",
-        commentary: "",
+        apellido1: "",
+        apellido2: "",
+        organizacion: "",
+        departamento: "",
+        pais: "",
+        telefono: "",
+        biografia: "",
+        comentario: "",
         role: "Autor",
 
         submitted: false
@@ -39,7 +39,7 @@ export default class AddUser extends Component {
 
   onChangeName(e) {
     this.setState({
-      name: e.target.value
+      nombre: e.target.value
     });
   }
 
@@ -57,82 +57,82 @@ export default class AddUser extends Component {
 
   onChangeLastname1(e) {
     this.setState({
-      lastname1: e.target.value
+      apellido1: e.target.value
     });
   }
 
   onChangeLastname2(e) {
     this.setState({
-      lastname2: e.target.value
+      apellido2: e.target.value
     });
   }
 
   onChangeOrganization(e) {
     this.setState({
-      organization: e.target.value
+      organizacion: e.target.value
     });
   }
 
   onChangeDepartment(e) {
     this.setState({
-      department: e.target.value
+      departamento: e.target.value
     });
   }
 
   onChangeCountry(e) {
     this.setState({
-      country: e.target.value
+      pais: e.target.value
     });
   }
 
   onChangePhone(e) {
     this.setState({
-      phone: e.target.value
+      telefono: e.target.value
     });
   }
 
   onChangeBiography(e) {
     this.setState({
-      biography: e.target.value
+      biografia: e.target.value
     });
   }
 
   onChangeCommentary(e) {
     this.setState({
-      commentary: e.target.value
+      comentario: e.target.value
     });
   }
 
   saveUser() {
     var data = {
-      name: this.state.name,
+      nombre: this.state.nombre,
       email: this.state.email,
       password: this.state.password,
-      lastname1: this.state.lastname1,
-      lastname2: this.state.lastname2,
-      organization: this.state.organization,
-      department: this.state.department,
-      country: this.state.country,
-      phone: this.state.phone,
-      biography: this.state.biography,
-      commentary: this.state.commentary
+      apellido1: this.state.apellido1,
+      apellido2: this.state.apellido2,
+      organizacion: this.state.organizacion,
+      departamento: this.state.departamento,
+      pais: this.state.pais,
+      telefono: this.state.telefono,
+      biografia: this.state.biografia,
+      comentario: this.state.comentario
     };
 
     UserDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          name: response.data.name,
+          nombre: response.data.nombre,
           email: response.data.email,
           password: response.data.password,
-          lastname1: response.data.lastname1,
-          lastname2: response.data.lastname2,
-          organization: response.data.organization,
-          department: response.data.department,
-          country: response.data.country,
-          phone: response.data.phone,
-          biography: response.data.biography,
-          commentary: response.data.commentary,
+          apellido1: response.data.apellido1,
+          apellido2: response.data.apellido2,
+          organizacion: response.data.organizacion,
+          departamento: response.data.departamento,
+          pais: response.data.pais,
+          telefono: response.data.telefono,
+          biografia: response.data.biografia,
+          comentario: response.data.comentario,
           role: response.data.role,
 
           submitted: true
@@ -147,17 +147,17 @@ export default class AddUser extends Component {
   newUser() {
     this.setState({
        id: null,
-       name: "",
+       nombre: "",
        email: "",
        password: "",
-       lastname1: "",
-       lastname2: "",
-       organization: "",
-       department: "",
-       country: "",
-       phone: "",
-       biography: "",
-       commentary: "",
+       apellido1: "",
+       apellido2: "",
+       organizacion: "",
+       departamento: "",
+       pais: "",
+       telefono: "",
+       biografia: "",
+       comentario: "",
        role: "Autor",
 
       submitted: false
@@ -174,15 +174,15 @@ export default class AddUser extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="nombre">nombre</label>
               <input
                 type="text"
                 className="form-control"
-                id="name"
+                id="nombre"
                 required
-                value={this.state.name}
+                value={this.state.nombre}
                 onChange={this.onChangeName}
-                name="name"
+                nombre="nombre"
               />
             </div>
 
@@ -195,7 +195,7 @@ export default class AddUser extends Component {
                 required
                 value={this.state.email}
                 onChange={this.onChangeEmail}
-                name="email"
+                nombre="email"
               />
             </div>
 
@@ -208,111 +208,111 @@ export default class AddUser extends Component {
                 required
                 value={this.state.password}
                 onChange={this.onChangePassword}
-                name="password"
+                nombre="password"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="lastname1">Lastname1</label>
+              <label htmlFor="apellido1">apellido1</label>
               <input
                 type="text"
                 className="form-control"
-                id="lastname1"
+                id="apellido1"
                 required
-                value={this.state.lastname1}
+                value={this.state.apellido1}
                 onChange={this.onChangeLastname1}
-                name="lastname1"
+                nombre="apellido1"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="lastname2">Lastname2</label>
+              <label htmlFor="apellido2">apellido2</label>
               <input
                 type="text"
                 className="form-control"
-                id="lastname2"
+                id="apellido2"
                 required
-                value={this.state.lastname2}
+                value={this.state.apellido2}
                 onChange={this.onChangeLastname2}
-                name="lastname2"
+                nombre="apellido2"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="organization">Organization</label>
+              <label htmlFor="organizacion">organizacion</label>
               <input
                 type="text"
                 className="form-control"
-                id="organization"
+                id="organizacion"
                 required
-                value={this.state.organization}
+                value={this.state.organizacion}
                 onChange={this.onChangeOrganization}
-                name="organization"
+                nombre="organizacion"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="department">Department</label>
+              <label htmlFor="departamento">departamento</label>
               <input
                 type="text"
                 className="form-control"
-                id="department"
+                id="departamento"
                 required
-                value={this.state.department}
+                value={this.state.departamento}
                 onChange={this.onChangeDepartment}
-                name="department"
+                nombre="departamento"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="country">Country</label>
+              <label htmlFor="pais">pais</label>
               <input
                 type="text"
                 className="form-control"
-                id="country"
+                id="pais"
                 required
-                value={this.state.country}
+                value={this.state.pais}
                 onChange={this.onChangeCountry}
-                name="country"
+                nombre="pais"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="phone">Phone</label>
+              <label htmlFor="telefono">telefono</label>
               <input
                 type="text"
                 className="form-control"
-                id="phone"
+                id="telefono"
                 required
-                value={this.state.phone}
+                value={this.state.telefono}
                 onChange={this.onChangePhone}
-                name="phone"
+                nombre="telefono"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="biography">Biography</label>
+              <label htmlFor="biografia">biografia</label>
               <input
                 type="text"
                 className="form-control"
-                id="biography"
+                id="biografia"
                 required
-                value={this.state.biography}
+                value={this.state.biografia}
                 onChange={this.onChangeBiography}
-                name="biography"
+                nombre="biografia"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="commentary">Commentary</label>
+              <label htmlFor="comentario">comentario</label>
               <input
                 type="text"
                 className="form-control"
-                id="commentary"
+                id="comentario"
                 required
-                value={this.state.commentary}
+                value={this.state.comentario}
                 onChange={this.onChangeCommentary}
-                name="commentary"
+                nombre="comentario"
               />
             </div>
 

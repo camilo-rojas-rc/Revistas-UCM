@@ -94,7 +94,7 @@ export default class UsersList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by name"
+              placeholder="search by name"
               value={searchName}
               onChange={this.onChangeSearchName}
             />
@@ -123,7 +123,7 @@ export default class UsersList extends Component {
                   onClick={() => this.setActiveUser(user, index)}
                   key={index}
                 >
-                  {user.name}
+                  {user.nombre}
                 </li>
               ))}
           </ul>
@@ -140,9 +140,9 @@ export default class UsersList extends Component {
               <h4>User</h4>
               <div>
                 <label>
-                  <strong>Name:</strong>
+                  <strong>nombre:</strong>
                 </label>{" "}
-                {currentUser.name}
+                {currentUser.nombre}
               </div>
               <div>
                 <label>
@@ -152,51 +152,51 @@ export default class UsersList extends Component {
               </div>
               <div>
                 <label>
-                  <strong>Lastname1:</strong>
+                  <strong>apellido1:</strong>
                 </label>{" "}
-                {currentUser.lastname1}
+                {currentUser.apellido1}
               </div>
               <div>
                 <label>
-                  <strong>Lastname2:</strong>
+                  <strong>apellido2:</strong>
                 </label>{" "}
-                {currentUser.lastname2}
+                {currentUser.apellido2}
               </div>
               <div>
                 <label>
-                  <strong>Organization:</strong>
+                  <strong>apellido2:</strong>
                 </label>{" "}
-                {currentUser.organization}
+                {currentUser.apellido2}
               </div>
               <div>
                 <label>
-                  <strong>Department:</strong>
+                  <strong>departamento:</strong>
                 </label>{" "}
-                {currentUser.department}
+                {currentUser.departamento}
               </div>
               <div>
                 <label>
-                  <strong>Country:</strong>
+                  <strong>pais:</strong>
                 </label>{" "}
-                {currentUser.country}
+                {currentUser.pais}
               </div>
               <div>
                 <label>
-                  <strong>Phone:</strong>
+                  <strong>telefono:</strong>
                 </label>{" "}
-                {currentUser.phone}
+                {currentUser.telefono}
               </div>
               <div>
                 <label>
-                  <strong>Biography:</strong>
+                  <strong>biografia:</strong>
                 </label>{" "}
-                {currentUser.biography}
+                {currentUser.biografia}
               </div>
               <div>
                 <label>
-                  <strong>Commentary:</strong>
+                  <strong>comentario:</strong>
                 </label>{" "}
-                {currentUser.commentary}
+                {currentUser.comentario}
               </div>
 
               <Link

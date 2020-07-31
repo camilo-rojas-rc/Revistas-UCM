@@ -110,7 +110,7 @@ export default class TutorialareasList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorial-areas List</h4>
+          <h4>Revista-areas List</h4>
 
           <ul className="list-group">
             {tutorialareas &&
@@ -123,7 +123,7 @@ export default class TutorialareasList extends Component {
                   onClick={() => this.setActiveTutorialarea(tutorialarea, index)}
                   key={index}
                 >
-                  {tutorialarea.id_tutorial}
+                  {tutorialarea.revistaId}
                 </li>
               ))}
           </ul>
@@ -137,18 +137,18 @@ export default class TutorialareasList extends Component {
         <div className="col-md-6">
           {currentTutorialarea ? (
             <div>
-              <h4>Tutorial-area</h4>
+              <h4>Revista-area</h4>
               <div>
                 <label>
-                  <strong>Id_tutorial:</strong>
+                  <strong>revistaId:</strong>
                 </label>{" "}
-                {currentTutorialarea.id_tutorial}
+                {currentTutorialarea.revistaId}
               </div>
               <div>
                 <label>
-                  <strong>Id_area:</strong>
+                  <strong>areaId:</strong>
                 </label>{" "}
-                {currentTutorialarea.id_area}
+                {currentTutorialarea.areaId}
               </div>
 
               <Link
@@ -161,7 +161,7 @@ export default class TutorialareasList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorialarea...</p>
+              <p>Please click on a Revista-area...</p>
             </div>
           )}
         </div>

@@ -123,7 +123,7 @@ export default class AsignacionsList extends Component {
                   onClick={() => this.setActiveAsignacion(asignacion, index)}
                   key={index}
                 >
-                  {asignacion.id_user}
+                  {asignacion.userId}
                 </li>
               ))}
           </ul>
@@ -140,15 +140,15 @@ export default class AsignacionsList extends Component {
               <h4>Asignacion</h4>
               <div>
                 <label>
-                  <strong>Id_user:</strong>
+                  <strong>userId:</strong>
                 </label>{" "}
-                {currentAsignacion.id_user}
+                {currentAsignacion.userId}
               </div>
               <div>
                 <label>
-                  <strong>Id_user:</strong>
+                  <strong>articleId:</strong>
                 </label>{" "}
-                {currentAsignacion.id_user}
+                {currentAsignacion.articleId}
               </div>
               <div>
                 <label>

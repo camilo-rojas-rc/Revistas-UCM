@@ -4,6 +4,7 @@ import ArticleDataService from "../services/article.service";
 export default class Article extends Component {
   constructor(props) {
     super(props);
+    //declaracion de la funciones
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
     this.onChangeDocument = this.onChangeDocument.bind(this);
@@ -15,16 +16,17 @@ export default class Article extends Component {
     this.updateArticle = this.updateArticle.bind(this);
     this.deleteArticle = this.deleteArticle.bind(this);
 
-    this.state = {
+    //declaracion de los strings que se usaran en las funciones
+    this.estado = {
       currentArticle: {
         id: null,
-        title: "",
-        state: "",
-        document: "",
-        commentary: "",
-        description: "",
-        authors: "",
-        published: false,
+        titulo: "",
+        estado: "",
+        documento: "",
+        comentario: "",
+        descripcion: "",
+        autores: "",
+        publicado: false,
       },
       message: ""
     };
@@ -34,76 +36,78 @@ export default class Article extends Component {
     this.getArticle(this.props.match.params.id);
   }
 
+  //las funciones onChange toman el valor pasado por un formulario y lo guardan en un string
   onChangeTitle(e) {
-    const title = e.target.value;
+    const titulo = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentArticle: {
           ...prevState.currentArticle,
-          title: title
+          titulo: titulo
         }
       };
     });
   }
 
   onChangeState(e) {
-    const state = e.target.value;
+    const estado = e.target.value;
     
     this.setState(prevState => ({
       currentArticle: {
         ...prevState.currentArticle,
-        state: state
+        estado: estado
       }
     }));
   }
 
   onChangeDocument(e) {
-    const document = e.target.value;
+    const documento = e.target.value;
     
     this.setState(prevState => ({
       currentArticle: {
         ...prevState.currentArticle,
-        document: document
+        documento: documento
       }
     }));
   }
 
   onChangeCommentary(e) {
-    const commentary = e.target.value;
+    const comentario = e.target.value;
     
     this.setState(prevState => ({
       currentArticle: {
         ...prevState.currentArticle,
-        commentary: commentary
+        comentario: comentario
       }
     }));
   }
 
   onChangeDescription(e) {
-    const description = e.target.value;
+    const descripcion = e.target.value;
     
     this.setState(prevState => ({
       currentArticle: {
         ...prevState.currentArticle,
-        description: description
+        descripcion: descripcion
       }
     }));
   }
 
   onChangeAuthors(e) {
-    const authors = e.target.value;
+    const autores = e.target.value;
     
     this.setState(prevState => ({
       currentArticle: {
         ...prevState.currentArticle,
-        authors: authors
+        autores: autores
       }
     }));
   }
 
+  //funcion que obtiene a traves de una id
   getArticle(id) {
-    ArticleDataService.get(id)
+    ArticleDataService.get(id) //llamar a la funcion get
       .then(response => {
         this.setState({
           currentArticle: response.data
@@ -115,24 +119,26 @@ export default class Article extends Component {
       });
   }
 
+  //funcion que actualiza un atributo en la tabla
   updatePublished(status) {
     var data = {
-      id: this.state.currentArticle.id,
-      title: this.state.currentArticle.title,
-      state: this.state.currentArticle.state,
-      document: this.state.currentArticle.document,
-      commentary: this.state.currentArticle.commentary,
-      description: this.state.currentArticle.description,
-      authors: this.state.currentArticle.authors,
-      published: status
+      id: this.estado.currentArticle.id,
+      titulo: this.estado.currentArticle.titulo,
+      estado: this.estado.currentArticle.estado,
+      documento: this.estado.currentArticle.documento,
+      comentario: this.estado.currentArticle.comentario,
+      descripcion: this.estado.currentArticle.descripcion,
+      autores: this.estado.currentArticle.autores,
+      publicado: status
     };
 
-    ArticleDataService.update(this.state.currentArticle.id, data)
+    //se hace un llamada a la funcion update para crear una tabla con los valores pasados pr formulario
+    ArticleDataService.update(this.estado.currentArticle.id, data)
       .then(response => {
         this.setState(prevState => ({
           currentArticle: {
             ...prevState.currentArticle,
-            published: status
+            publicado: status
           }
         }));
         console.log(response.data);
@@ -142,11 +148,12 @@ export default class Article extends Component {
       });
   }
 
+  //funcion que actualiza los datos de la tabla
   updateArticle() {
-    ArticleDataService.update(
-      this.state.currentArticle.id,
-      this.state.currentArticle
-    )
+    ArticleDataService.update( 
+      this.estado.currentArticle.id,
+      this.estado.currentArticle
+    ) //llamar a la funcion update
       .then(response => {
         console.log(response.data);
         this.setState({
@@ -158,8 +165,9 @@ export default class Article extends Component {
       });
   }
 
+  //funcion que elimina una tabla
   deleteArticle() {    
-    ArticleDataService.delete(this.state.currentArticle.id)
+    ArticleDataService.delete(this.estado.currentArticle.id)
       .then(response => {
         console.log(response.data);
         this.props.history.push('/articles')
@@ -170,71 +178,72 @@ export default class Article extends Component {
   }
 
   render() {
-    const { currentArticle } = this.state;
+    const { currentArticle } = this.estado;
 
     return (
+      //formulario para actualizar los datos de la tabla articulo
       <div>
         {currentArticle ? (
           <div className="edit-form">
             <h4>Article</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="titulo">titulo</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="title"
-                  value={currentArticle.title}
+                  id="titulo"
+                  value={currentArticle.titulo}
                   onChange={this.onChangeTitle}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="state">State</label>
+                <label htmlFor="estado">estado</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="state"
-                  value={currentArticle.state}
+                  id="estado"
+                  value={currentArticle.estado}
                   onChange={this.onChangeState}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="document">Document</label>
+                <label htmlFor="documento">documento</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="document"
-                  value={currentArticle.document}
+                  id="documento"
+                  value={currentArticle.documento}
                   onChange={this.onChangeDocument}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="commentary">Commentary</label>
+                <label htmlFor="comentario">comentario</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="commentary"
-                  value={currentArticle.commentary}
+                  id="comentario"
+                  value={currentArticle.comentario}
                   onChange={this.onChangeCommentary}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="description">Description</label>
+                <label htmlFor="descripcion">descripcion</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="description"
-                  value={currentArticle.description}
+                  id="descripcion"
+                  value={currentArticle.descripcion}
                   onChange={this.onChangeDescription}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="authors">Authors</label>
+                <label htmlFor="autores">autores</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="authors"
-                  value={currentArticle.authors}
+                  id="autores"
+                  value={currentArticle.autores}
                   onChange={this.onChangeAuthors}
                 />
               </div>
@@ -243,11 +252,11 @@ export default class Article extends Component {
                 <label>
                   <strong>Status:</strong>
                 </label>
-                {currentArticle.published ? "Published" : "Pending"}
+                {currentArticle.publicado ? "publicado" : "Pending"}
               </div>
             </form>
 
-            {currentArticle.published ? (
+            {currentArticle.publicado ? (
               <button
                 className="badge badge-primary mr-2"
                 onClick={() => this.updatePublished(false)}
@@ -277,7 +286,7 @@ export default class Article extends Component {
             >
               Update
             </button>
-            <p>{this.state.message}</p>
+            <p>{this.estado.message}</p>
           </div>
         ) : (
           <div>

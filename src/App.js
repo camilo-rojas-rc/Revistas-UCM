@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+
 import Inicio from "./components/inicio.component";
 import AddTutorial from "./components/add-tutorial.component";
 import Tutorial from "./components/tutorial.component";
@@ -37,8 +38,46 @@ import AddAsignacion from "./components/add-asignacion.component";
 import Asignacion from "./components/asignacion.component";
 import AsignacionsList from "./components/asignacions-list.component";
 
+import AuthService from "./services/auth.service";
+
+import Login from "./components/login.component";
+import Register from "./components/register.component";
+import Profile from "./components/profile.component";
+import BoardUser from "./components/board-user.component";
+import BoardModerator from "./components/board-moderator.component";
+import BoardAdmin from "./components/board-admin.component";
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
+
+    this.state = {
+      showModeratorBoard: false,
+      showAdminBoard: false,
+      currentUser: undefined
+    };
+  }
+
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      this.setState({
+        currentUser: user,
+        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN")
+      });
+    }
+  }
+
+  logOut() {
+    AuthService.logout();
+  }
+
   render() {
+    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+
     return (
       <Router>
         <div>
@@ -47,62 +86,88 @@ class App extends Component {
               <img src="./logo-UCM.png" width="150" height="50" />
             </a>
             <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to={"/users"} className="nav-link">
-                  My profile
+
+              {showModeratorBoard && (
+                <li className="nav-item">
+                  <Link to={"/mod"} className="nav-link">
+                    Moderator Board
+                  </Link>
+                </li>
+              )}
+
+              {showAdminBoard && (
+                <li className="nav-item">
+                  <Link to={"/admin"} className="nav-link">
+                    Admin Board
+                  </Link>
+                </li>
+              )}
+
+              {currentUser && (
+                <li className="nav-item">
+                  <Link to={"/user"} className="nav-link">
+                    User
+                  </Link>
+                </li>
+              )}
+              {currentUser && (
+                <li className="nav-item">
+                  <Link to={"/tutorials"} className="nav-link">
+                    Revistas
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/tutorials"} className="nav-link">
-                  Tutorials
+                </li>
+              )}
+              {currentUser && (
+                <li className="nav-item">
+                  <Link to={"/articles"} className="nav-link">
+                    Articulos
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/articles"} className="nav-link">
-                  Articles
+                </li>
+              )}
+              {currentUser && (
+                <li className="nav-item">
+                  <Link to={"/tutorialarticles"} className="nav-link">
+                    Revista-articulos
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/tutorialarticles"} className="nav-link">
-                  Tutorial-articles
+                </li>
+              )}
+              {currentUser && (
+                <li className="nav-item">
+                  <Link to={"/areas"} className="nav-link">
+                    Areas
                 </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/areas"} className="nav-link">
-                  Areas
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/userareas"} className="nav-link">
-                  User-areas
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/tutorialareas"} className="nav-link">
-                  Tutorial-areas
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/articleareas"} className="nav-link">
-                  Article-areas
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/solicitatiempos"} className="nav-link">
-                  Solicita-tiempos
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/solicitarols"} className="nav-link">
-                  Solicita-rols
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/asignacions"} className="nav-link">
-                  Asignacions
-                </Link>
-              </li>
+                </li>
+              )}
+
             </div>
+            {currentUser ? (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/profile"} className="nav-link">
+                    {currentUser.nombre}
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a href="/login" className="nav-link" onClick={this.logOut}>
+                    LogOut
+                  </a>
+                </li>
+              </div>
+            ) : (
+                <div className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <Link to={"/login"} className="nav-link">
+                      Login
+                  </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link to={"/register"} className="nav-link">
+                      Sign Up
+                  </Link>
+                  </li>
+                </div>
+              )}
           </nav>
 
           <div className="container mt-3">
@@ -141,6 +206,13 @@ class App extends Component {
               <Route exact path={["/asignacions"]} component={AsignacionsList} />
               <Route exact path="/asignacions/add" component={AddAsignacion} />
               <Route path="/asignacions/:id" component={Asignacion} />
+
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/profile" component={Profile} />
+              <Route path="/user" component={BoardUser} />
+              <Route path="/mod" component={BoardModerator} />
+              <Route path="/admin" component={BoardAdmin} />
             </Switch>
           </div>
         </div>

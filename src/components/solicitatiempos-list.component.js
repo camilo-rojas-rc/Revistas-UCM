@@ -140,15 +140,15 @@ export default class SolicitatiemposList extends Component {
               <h4>Solicita-tiempo</h4>
               <div>
                 <label>
-                  <strong>Id_user:</strong>
+                  <strong>userId:</strong>
                 </label>{" "}
-                {currentSolicitatiempo.id_user}
+                {currentSolicitatiempo.userId}
               </div>
               <div>
                 <label>
-                  <strong>Id_articulo:</strong>
+                  <strong>articleId:</strong>
                 </label>{" "}
-                {currentSolicitatiempo.id_articulo}
+                {currentSolicitatiempo.articleId}
               </div>
               <div>
                 <label>

@@ -23,17 +23,17 @@ export default class User extends Component {
     this.state = {
       currentUser: {
         id: null,
-        name: "",
+        nombre: "",
         email: "",
         password: "",
-        lastname1: "",
-        lastname2: "",
-        organization: "",
-        department: "",
-        country: "",
-        phone: "",
-        biography: "",
-        commentary: "",
+        apellido1: "",
+        apellido2: "",
+        organizacion: "",
+        departamento: "",
+        pais: "",
+        telefono: "",
+        biografia: "",
+        comentario: "",
         role: "Autor",
       },
       message: ""
@@ -45,13 +45,13 @@ export default class User extends Component {
   }
 
   onChangeName(e) {
-    const name = e.target.value;
+    const nombre = e.target.value;
 
-    this.setState(function(prevState) {
+    this.setState(function (prevState) {
       return {
         currentUser: {
           ...prevState.currentUser,
-          name: name
+          nombre: nombre
         }
       };
     });
@@ -59,7 +59,7 @@ export default class User extends Component {
 
   onChangeEmail(e) {
     const email = e.target.value;
-    
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
@@ -70,7 +70,7 @@ export default class User extends Component {
 
   onChangePassword(e) {
     const password = e.target.value;
-    
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
@@ -80,89 +80,89 @@ export default class User extends Component {
   }
 
   onChangeLastname1(e) {
-    const lastname1 = e.target.value;
-    
+    const apellido1 = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        lastname1: lastname1
+        apellido1: apellido1
       }
     }));
   }
 
   onChangeLastname2(e) {
-    const lastname2 = e.target.value;
-    
+    const apellido2 = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        lastname2: lastname2
+        apellido2: apellido2
       }
     }));
   }
 
   onChangeOrganization(e) {
-    const organization = e.target.value;
-    
+    const organizacion = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        organization: organization
+        organizacion: organizacion
       }
     }));
   }
 
   onChangeDepartment(e) {
-    const department = e.target.value;
-    
+    const departamento = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        department: department
+        departamento: departamento
       }
     }));
   }
 
   onChangeCountry(e) {
-    const country = e.target.value;
-    
+    const pais = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        country: country
+        pais: pais
       }
     }));
   }
 
   onChangePhone(e) {
-    const phone = e.target.value;
-    
+    const telefono = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        phone: phone
+        telefono: telefono
       }
     }));
   }
 
   onChangeBiography(e) {
-    const biography = e.target.value;
-    
+    const biografia = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        biography: biography
+        biografia: biografia
       }
     }));
   }
 
   onChangeCommentary(e) {
-    const commentary = e.target.value;
-    
+    const comentario = e.target.value;
+
     this.setState(prevState => ({
       currentUser: {
         ...prevState.currentUser,
-        commentary: commentary
+        comentario: comentario
       }
     }));
   }
@@ -183,17 +183,17 @@ export default class User extends Component {
   updateRole(status) {
     var data = {
       id: this.state.currentUser.id,
-      name: this.state.currentUser.name,
+      nombre: this.state.currentUser.nombre,
       email: this.state.currentUser.email,
       password: this.state.currentUser.password,
-      lastname1: this.state.currentUser.lastname1,
-      lastname2: this.state.currentUser.lastname2,
-      organization: this.state.currentUser.organization,
-      department: this.state.currentUser.department,
-      country: this.state.currentUser.country,
-      phone: this.state.currentUser.phone,
-      biography: this.state.currentUser.biography,
-      commentary: this.state.currentUser.commentary,
+      apellido1: this.state.currentUser.apellido1,
+      apellido2: this.state.currentUser.apellido2,
+      organizacion: this.state.currentUser.organizacion,
+      departamento: this.state.currentUser.departamento,
+      pais: this.state.currentUser.pais,
+      telefono: this.state.currentUser.telefono,
+      biografia: this.state.currentUser.biografia,
+      comentario: this.state.currentUser.comentario,
       role: status
     };
 
@@ -228,7 +228,7 @@ export default class User extends Component {
       });
   }
 
-  deleteUser() {    
+  deleteUser() {
     UserDataService.delete(this.state.currentUser.id)
       .then(response => {
         console.log(response.data);
@@ -249,12 +249,12 @@ export default class User extends Component {
             <h4>User</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="nombre">nombre</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="name"
-                  value={currentUser.name}
+                  id="nombre"
+                  value={currentUser.nombre}
                   onChange={this.onChangeName}
                 />
               </div>
@@ -279,82 +279,82 @@ export default class User extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="lastname1">Lastname1</label>
+                <label htmlFor="apellido1">apellido1</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastname1"
-                  value={currentUser.lastname1}
+                  id="apellido1"
+                  value={currentUser.apellido1}
                   onChange={this.onChangeLastname1}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="lastname2">Lastname2</label>
+                <label htmlFor="apellido2">apellido2</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="lastname2"
-                  value={currentUser.lastname2}
+                  id="apellido2"
+                  value={currentUser.apellido2}
                   onChange={this.onChangeLastname2}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="organization">Organization</label>
+                <label htmlFor="organizacion">organizacion</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="organization"
-                  value={currentUser.organization}
+                  id="organizacion"
+                  value={currentUser.organizacion}
                   onChange={this.onChangeOrganization}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="department">Department</label>
+                <label htmlFor="departamento">departamento</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="department"
-                  value={currentUser.department}
+                  id="departamento"
+                  value={currentUser.departamento}
                   onChange={this.onChangeDepartment}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="country">Country</label>
+                <label htmlFor="pais">pais</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="country"
-                  value={currentUser.country}
+                  id="pais"
+                  value={currentUser.pais}
                   onChange={this.onChangeCountry}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="telefono">telefono</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="phone"
-                  value={currentUser.phone}
+                  id="telefono"
+                  value={currentUser.telefono}
                   onChange={this.onChangePhone}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="biography">Biography</label>
+                <label htmlFor="biografia">biografia</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="biography"
-                  value={currentUser.biography}
+                  id="biografia"
+                  value={currentUser.biografia}
                   onChange={this.onChangeBiography}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="commentary">Commentary</label>
+                <label htmlFor="comentario">comentario</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="commentary"
-                  value={currentUser.commentary}
+                  id="comentario"
+                  value={currentUser.comentario}
                   onChange={this.onChangeCommentary}
                 />
               </div>
@@ -375,13 +375,13 @@ export default class User extends Component {
                 Author
               </button>
             ) : (
-              <button
-                className="badge badge-primary mr-2"
-                onClick={() => this.updateRole(true)}
-              >
-                Reviewer
-              </button>
-            )}
+                <button
+                  className="badge badge-primary mr-2"
+                  onClick={() => this.updateRole(true)}
+                >
+                  Reviewer
+                </button>
+              )}
 
             <button
               className="badge badge-danger mr-2"
@@ -400,11 +400,11 @@ export default class User extends Component {
             <p>{this.state.message}</p>
           </div>
         ) : (
-          <div>
-            <br />
-            <p>Please click on a User...</p>
-          </div>
-        )}
+            <div>
+              <br />
+              <p>Please click on a User...</p>
+            </div>
+          )}
       </div>
     );
   }

@@ -123,7 +123,7 @@ export default class AreasList extends Component {
                   onClick={() => this.setActiveArea(area, index)}
                   key={index}
                 >
-                  {area.name}
+                  {area.nombre}
                 </li>
               ))}
           </ul>
@@ -140,9 +140,9 @@ export default class AreasList extends Component {
               <h4>Area</h4>
               <div>
                 <label>
-                  <strong>Name:</strong>
+                  <strong>nombre:</strong>
                 </label>{" "}
-                {currentArea.name}
+                {currentArea.nombre}
               </div>
 
               <Link

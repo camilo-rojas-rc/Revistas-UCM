@@ -140,9 +140,9 @@ export default class SolicitarolsList extends Component {
               <h4>Solicita-rol</h4>
               <div>
                 <label>
-                  <strong>Id_user:</strong>
+                  <strong>userId:</strong>
                 </label>{" "}
-                {currentSolicitarol.id_user}
+                {currentSolicitarol.userId}
               </div>
               <div>
                 <label>

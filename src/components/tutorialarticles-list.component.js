@@ -110,7 +110,7 @@ export default class TutorialarticlesList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorial-articles List</h4>
+          <h4>Revista-articles List</h4>
 
           <ul className="list-group">
             {tutorialarticles &&
@@ -123,7 +123,7 @@ export default class TutorialarticlesList extends Component {
                   onClick={() => this.setActiveTutorialarticle(tutorialarticle, index)}
                   key={index}
                 >
-                  {tutorialarticle.id_tutorial}
+                  {tutorialarticle.revistaId}
                 </li>
               ))}
           </ul>
@@ -137,18 +137,18 @@ export default class TutorialarticlesList extends Component {
         <div className="col-md-6">
           {currentTutorialarticle ? (
             <div>
-              <h4>Tutorial-article</h4>
+              <h4>Revista-article</h4>
               <div>
                 <label>
-                  <strong>Id_tutorial:</strong>
+                  <strong>revistaId:</strong>
                 </label>{" "}
-                {currentTutorialarticle.id_tutorial}
+                {currentTutorialarticle.revistaId}
               </div>
               <div>
                 <label>
-                  <strong>Id_article:</strong>
+                  <strong>articuloId:</strong>
                 </label>{" "}
-                {currentTutorialarticle.id_article}
+                {currentTutorialarticle.articuloId}
               </div>
 
               <Link
@@ -161,7 +161,7 @@ export default class TutorialarticlesList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorialarticle...</p>
+              <p>Please click on a Revista-article...</p>
             </div>
           )}
         </div>

@@ -11,8 +11,8 @@ export default class AddArticlearea extends Component {
 
     this.state = {
       id: null,
-      id_articulo: "null",
-      id_area: "null", 
+      articleId: "null",
+      areaId: "null", 
 
       submitted: false
     };
@@ -20,28 +20,28 @@ export default class AddArticlearea extends Component {
 
   onChangeId_articulo(e) {
     this.setState({
-        id_articulo: e.target.value
+        articleId: e.target.value
     });
   }
 
   onChangeId_area(e) {
     this.setState({
-        id_area: e.target.value
+        areaId: e.target.value
     });
   }
 
   saveArticlearea() {
     var data = {
-        id_articulo: this.state.id_articulo,
-        id_area: this.state.id_area
+        articleId: this.state.articleId,
+        areaId: this.state.areaId
     };
 
     ArticleareaDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          id_articulo: response.data.id_articulo,
-          id_area: response.data.id_area,
+          articleId: response.data.articleId,
+          areaId: response.data.areaId,
 
           submitted: true
         });
@@ -55,8 +55,8 @@ export default class AddArticlearea extends Component {
   newArticlearea() {
     this.setState({
       id: null,
-      id_articulo: "null",
-      id_area: "null",
+      articleId: "null",
+      areaId: "null",
 
       submitted: false
     });
@@ -72,28 +72,28 @@ export default class AddArticlearea extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="id_articulo">Id_articulo</label>
+              <label htmlFor="articleId">articleId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_articulo"
+                id="articleId"
                 required
-                value={this.state.id_articulo}
+                value={this.state.articleId}
                 onChange={this.onChangeId_articulo}
-                name="id_articulo"
+                name="articleId"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="id_area">Id_area</label>
+              <label htmlFor="areaId">areaId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_area"
+                id="areaId"
                 required
-                value={this.state.id_area}
+                value={this.state.areaId}
                 onChange={this.onChangeId_area}
-                name="id_area"
+                name="areaId"
               />
             </div>
 

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default class ArticlesList extends Component {
   constructor(props) {
     super(props);
+    //declaracion de la funciones
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
     this.retrieveArticles = this.retrieveArticles.bind(this);
     this.refreshList = this.refreshList.bind(this);
@@ -12,7 +13,8 @@ export default class ArticlesList extends Component {
     this.removeAllArticles = this.removeAllArticles.bind(this);
     this.searchTitle = this.searchTitle.bind(this);
 
-    this.state = {
+    //declaracion de los strings que se usaran en las funciones
+    this.estado = {
       articles: [],
       currentArticle: null,
       currentIndex: -1,
@@ -24,6 +26,8 @@ export default class ArticlesList extends Component {
     this.retrieveArticles();
   }
 
+  //las funciones onChange toman el valor pasado por un formulario y lo guardan en un string
+  //esta funcion guarda el valor para buscar e la tabla
   onChangeSearchTitle(e) {
     const searchTitle = e.target.value;
 
@@ -32,8 +36,9 @@ export default class ArticlesList extends Component {
     });
   }
 
+  //funcion que obtiene a todos los datos de una tabla
   retrieveArticles() {
-    ArticleDataService.getAll()
+    ArticleDataService.getAll() //llama a la funcion getall
       .then(response => {
         this.setState({
           articles: response.data
@@ -45,6 +50,7 @@ export default class ArticlesList extends Component {
       });
   }
 
+  //una ves realizada la funcion retrieveArticles, esta refresca la lista de datos
   refreshList() {
     this.retrieveArticles();
     this.setState({
@@ -53,6 +59,7 @@ export default class ArticlesList extends Component {
     });
   }
 
+  //cuando se informacion en una tabla, esta funcion despues de obtener dicha informacion la guarda e un array
   setActiveArticle(article, index) {
     this.setState({
       currentArticle: article,
@@ -60,8 +67,9 @@ export default class ArticlesList extends Component {
     });
   }
 
+  //elimina todos los datos de la tabla
   removeAllArticles() {
-    ArticleDataService.deleteAll()
+    ArticleDataService.deleteAll()//llama a la funcion deleteall
       .then(response => {
         console.log(response.data);
         this.refreshList();
@@ -71,8 +79,9 @@ export default class ArticlesList extends Component {
       });
   }
 
+  //funcion que busca un determinado dato en una tabla
   searchTitle() {
-    ArticleDataService.findByTitle(this.state.searchTitle)
+    ArticleDataService.findByTitle(this.estado.searchTitle)//llama a la funcion findByTitle
       .then(response => {
         this.setState({
           articles: response.data
@@ -85,9 +94,11 @@ export default class ArticlesList extends Component {
   }
 
   render() {
-    const { searchTitle, articles, currentArticle, currentIndex } = this.state;
+    const { searchTitle, articles, currentArticle, currentIndex } = this.estado;
 
     return (
+      //template que muestra todos los articulos
+      //ademas cuando se seleciona un articulo, este muestra un resumen de este
       <div className="list row">
         <div className="col-md-8">
           <div className="input-group mb-3">
@@ -123,7 +134,7 @@ export default class ArticlesList extends Component {
                   onClick={() => this.setActiveArticle(article, index)}
                   key={index}
                 >
-                  {article.title}
+                  {article.titulo}
                 </li>
               ))}
           </ul>
@@ -140,45 +151,45 @@ export default class ArticlesList extends Component {
               <h4>Article</h4>
               <div>
                 <label>
-                  <strong>Title:</strong>
+                  <strong>titulo:</strong>
                 </label>{" "}
-                {currentArticle.title}
+                {currentArticle.titulo}
               </div>
               <div>
                 <label>
-                  <strong>State:</strong>
+                  <strong>estado:</strong>
                 </label>{" "}
-                {currentArticle.state}
+                {currentArticle.estado}
               </div>
               <div>
                 <label>
-                  <strong>Document:</strong>
+                  <strong>documento:</strong>
                 </label>{" "}
-                {currentArticle.document}
+                {currentArticle.documento}
               </div>
               <div>
                 <label>
-                  <strong>Commentary:</strong>
+                  <strong>comentario:</strong>
                 </label>{" "}
-                {currentArticle.commentary}
+                {currentArticle.comentario}
               </div>
               <div>
                 <label>
-                  <strong>Description:</strong>
+                  <strong>descripcion:</strong>
                 </label>{" "}
-                {currentArticle.description}
+                {currentArticle.descripcion}
               </div>
               <div>
                 <label>
-                  <strong>Authors:</strong>
+                  <strong>autores:</strong>
                 </label>{" "}
-                {currentArticle.authors}
+                {currentArticle.autores}
               </div>
               <div>
                 <label>
                   <strong>Status:</strong>
                 </label>{" "}
-                {currentArticle.published ? "Published" : "Pending"}
+                {currentArticle.publicado ? "publicado" : "Pending"}
               </div>
 
               <Link

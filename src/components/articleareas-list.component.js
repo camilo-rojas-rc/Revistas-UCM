@@ -123,7 +123,7 @@ export default class ArticleareasList extends Component {
                   onClick={() => this.setActiveArticlearea(articlearea, index)}
                   key={index}
                 >
-                  {articlearea.id_articulo}
+                  {articlearea.articleId}
                 </li>
               ))}
           </ul>
@@ -140,15 +140,15 @@ export default class ArticleareasList extends Component {
               <h4>Article-area</h4>
               <div>
                 <label>
-                  <strong>Id_articulo:</strong>
+                  <strong>articleId:</strong>
                 </label>{" "}
-                {currentArticlearea.id_articulo}
+                {currentArticlearea.articleId}
               </div>
               <div>
                 <label>
-                  <strong>Id_area:</strong>
+                  <strong>areaId:</strong>
                 </label>{" "}
-                {currentArticlearea.id_area}
+                {currentArticlearea.areaId}
               </div>
 
               <Link

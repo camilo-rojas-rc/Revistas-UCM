@@ -12,8 +12,8 @@ export default class AddAsignacion extends Component {
 
     this.state = {
       id: null,
-      id_user: "",
-      id_articulo: "", 
+      userId: "",
+      articleId: "", 
       estado: "",
 
       submitted: false
@@ -22,13 +22,13 @@ export default class AddAsignacion extends Component {
 
   onChangeId_user(e) {
     this.setState({
-        id_user: e.target.value
+        userId: e.target.value
     });
   }
 
   onChangeId_articulo(e) {
     this.setState({
-        id_articulo: e.target.value
+        articleId: e.target.value
     });
   }
 
@@ -40,8 +40,8 @@ export default class AddAsignacion extends Component {
 
   saveAsignacion() {
     var data = {
-      id_user: this.state.id_user,
-      id_articulo: this.state.id_articulo, 
+      userId: this.state.userId,
+      articleId: this.state.articleId, 
       estado: this.state.estado,
     };
 
@@ -49,8 +49,8 @@ export default class AddAsignacion extends Component {
       .then(response => {
         this.setState({
           id: response.data.id,
-          id_user: response.data.id_user,
-          id_articulo: response.data.id_articulo,
+          userId: response.data.userId,
+          articleId: response.data.articleId,
           estado: response.data.estado,
 
           submitted: true
@@ -65,8 +65,8 @@ export default class AddAsignacion extends Component {
   newAsignacion() {
     this.setState({
       id: null,
-      id_user: "",
-      id_articulo: "", 
+      userId: "",
+      articleId: "", 
       estado: "",
 
       submitted: false
@@ -83,28 +83,28 @@ export default class AddAsignacion extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="id_user">Id_user</label>
+              <label htmlFor="userId">userId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_user"
+                id="userId"
                 required
-                value={this.state.id_user}
+                value={this.state.userId}
                 onChange={this.onChangeId_user}
-                name="id_user"
+                name="userId"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="id_articulo">Id_articulo</label>
+              <label htmlFor="articleId">articleId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_articulo"
+                id="articleId"
                 required
-                value={this.state.id_articulo}
+                value={this.state.articleId}
                 onChange={this.onChangeId_articulo}
-                name="id_articulo"
+                name="articleId"
               />
             </div>
 

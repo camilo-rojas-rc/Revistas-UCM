@@ -9,6 +9,14 @@ class TutorialarticleDataService {
     return http.get(`/tutorialarticles/${id}`);
   }
 
+  getAllrevistas() {
+    return http.get("/tutorials");
+  }
+
+  getAllarticulo() {
+    return http.get("/articles");
+  }
+
   create(data) {
     return http.post("/tutorialarticles", data);
   }

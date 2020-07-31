@@ -11,8 +11,8 @@ export default class AddUserarea extends Component {
 
     this.state = {
       id: null,
-      id_user: "null",
-      id_area: "null",
+      userId: "null",
+      areaId: "null",
 
       submitted: false
     };
@@ -20,28 +20,28 @@ export default class AddUserarea extends Component {
 
   onChangeId_user(e) {
     this.setState({
-      id_user: e.target.value
+      userId: e.target.value
     });
   }
 
   onChangeId_area(e) {
     this.setState({
-      id_area: e.target.value
+      areaId: e.target.value
     });
   }
 
   saveUserarea() {
     var data = {
-        id_user: this.state.id_user,
-        id_area: this.state.id_area
+        userId: this.state.userId,
+        areaId: this.state.areaId
     };
 
     UserareaDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          id_user: response.data.id_user,
-          id_area: response.data.id_area,
+          userId: response.data.userId,
+          areaId: response.data.areaId,
 
           submitted: true
         });
@@ -55,8 +55,8 @@ export default class AddUserarea extends Component {
   newUserarea() {
     this.setState({
       id: null,
-      id_user: "null",
-      id_area: "null",
+      userId: "null",
+      areaId: "null",
 
       submitted: false
     });
@@ -72,28 +72,28 @@ export default class AddUserarea extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="id_user">Id_user</label>
+              <label htmlFor="userId">userId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_user"
+                id="userId"
                 required
-                value={this.state.id_user}
+                value={this.state.userId}
                 onChange={this.onChangeId_user}
-                name="id_user"
+                name="userId"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="id_area">Id_area</label>
+              <label htmlFor="areaId">areaId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_area"
+                id="areaId"
                 required
-                value={this.state.id_area}
+                value={this.state.areaId}
                 onChange={this.onChangeId_area}
-                name="id_area"
+                name="areaId"
               />
             </div>
 

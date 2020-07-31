@@ -94,7 +94,7 @@ export default class TutorialsList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by title"
+              placeholder="Search by titulo"
               value={searchTitle}
               onChange={this.onChangeSearchTitle}
             />
@@ -110,7 +110,7 @@ export default class TutorialsList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorials List</h4>
+          <h4>Lista de revistas</h4>
 
           <ul className="list-group">
             {tutorials &&
@@ -123,7 +123,7 @@ export default class TutorialsList extends Component {
                   onClick={() => this.setActiveTutorial(tutorial, index)}
                   key={index}
                 >
-                  {tutorial.title}
+                  {tutorial.titulo}
                 </li>
               ))}
           </ul>
@@ -137,18 +137,18 @@ export default class TutorialsList extends Component {
         <div className="col-md-6">
           {currentTutorial ? (
             <div>
-              <h4>Tutorial</h4>
+              <h4>Revista</h4>
               <div>
                 <label>
-                  <strong>Title:</strong>
+                  <strong>titulo:</strong>
                 </label>{" "}
-                {currentTutorial.title}
+                {currentTutorial.titulo}
               </div>
               <div>
                 <label>
-                  <strong>Description:</strong>
+                  <strong>descripcion:</strong>
                 </label>{" "}
-                {currentTutorial.description}
+                {currentTutorial.descripcion}
               </div>
               <div>
                 <label>
@@ -167,7 +167,7 @@ export default class TutorialsList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorial...</p>
+              <p>Selecione una revista...</p>
             </div>
           )}
         </div>

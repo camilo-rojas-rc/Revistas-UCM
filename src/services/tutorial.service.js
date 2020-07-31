@@ -1,6 +1,8 @@
 import http from "../http-common";
+//se importa el archvo js que consume la api
 
 class TutorialDataService {
+  //funciones de get, post, put y delete sobre la api 
   getAll() {
     return http.get("/tutorials");
   }

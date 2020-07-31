@@ -11,8 +11,8 @@ export default class AddTutorialarea extends Component {
 
     this.state = {
       id: null,
-      id_tutorial: "null",
-      id_area: "null",
+      revistaId: "null",
+      areaId: "null",
 
       submitted: false
     };
@@ -20,28 +20,28 @@ export default class AddTutorialarea extends Component {
 
   onChangeId_tutorial(e) {
     this.setState({
-        id_tutorial: e.target.value
+        revistaId: e.target.value
     });
   }
 
   onChangeId_area(e) {
     this.setState({
-      id_area: e.target.value
+      areaId: e.target.value
     });
   }
 
   saveTutorialarea() {
     var data = {
-        id_tutorial: this.state.id_tutorial,
-        id_area: this.state.id_area
+        revistaId: this.state.revistaId,
+        areaId: this.state.areaId
     };
 
     TutorialareaDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          id_tutorial: response.data.id_tutorial,
-          id_area: response.data.id_area,
+          revistaId: response.data.revistaId,
+          areaId: response.data.areaId,
 
           submitted: true
         });
@@ -55,8 +55,8 @@ export default class AddTutorialarea extends Component {
   newTutorialarea() {
     this.setState({
       id: null,
-      id_tutorial: "null",
-      id_area: "null",
+      revistaId: "null",
+      areaId: "null",
 
       submitted: false
     });
@@ -72,28 +72,28 @@ export default class AddTutorialarea extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="id_tutorial">Id_tutorial</label>
+              <label htmlFor="revistaId">revistaId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_tutorial"
+                id="revistaId"
                 required
-                value={this.state.id_tutorial}
+                value={this.state.revistaId}
                 onChange={this.onChangeId_tutorial}
-                name="id_tutorial"
+                name="revistaId"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="id_area">Id_area</label>
+              <label htmlFor="areaId">areaId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_area"
+                id="areaId"
                 required
-                value={this.state.id_area}
+                value={this.state.areaId}
                 onChange={this.onChangeId_area}
-                name="id_area"
+                name="areaId"
               />
             </div>
 

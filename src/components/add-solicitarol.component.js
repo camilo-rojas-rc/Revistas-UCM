@@ -12,7 +12,7 @@ export default class AddSolicitarol extends Component {
 
     this.state = {
       id: null,
-      id_user: "",
+      userId: "",
       comentario: "", 
       estado: "",
 
@@ -22,7 +22,7 @@ export default class AddSolicitarol extends Component {
 
   onChangeId_user(e) {
     this.setState({
-        id_user: e.target.value
+        userId: e.target.value
     });
   }
 
@@ -40,7 +40,7 @@ export default class AddSolicitarol extends Component {
 
   saveSolicitarol() {
     var data = {
-        id_user: this.state.id_user,
+        userId: this.state.userId,
         comentario: this.state.comentario,
         estado: this.state.estado
     };
@@ -49,7 +49,7 @@ export default class AddSolicitarol extends Component {
       .then(response => {
         this.setState({
           id: response.data.id,
-          id_user: response.data.id_user,
+          userId: response.data.userId,
           comentario: response.data.comentario,
           estado: response.data.estado,
 
@@ -65,7 +65,7 @@ export default class AddSolicitarol extends Component {
   newSolicitarol() {
     this.setState({
       id: null,
-      id_user: "",
+      userId: "",
       comentario: "",
       estado: "",
 
@@ -83,15 +83,15 @@ export default class AddSolicitarol extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="id_user">Id_user</label>
+              <label htmlFor="userId">userId</label>
               <input
                 type="text"
                 className="form-control"
-                id="id_user"
+                id="userId"
                 required
-                value={this.state.id_user}
+                value={this.state.userId}
                 onChange={this.onChangeId_user}
-                name="id_user"
+                name="userId"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default class AddSolicitarol extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="estado">Estado</label>
+              <label htmlFor="estado">estado</label>
               <input
                 type="text"
                 className="form-control"

@@ -13,8 +13,8 @@ export default class Tutorialarticle extends Component {
     this.state = {
       currentTutorialarticle: {
         id: null,
-        id_tutorial: "null",
-        id_article: "null"
+        revistaId: "null",
+        articuloId: "null"
       },
       message: ""
     };
@@ -25,25 +25,25 @@ export default class Tutorialarticle extends Component {
   }
 
   onChangeId_tutorial(e) {
-    const id_tutorial = e.target.value;
+    const revistaId = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentTutorialarticle: {
           ...prevState.currentTutorialarticle,
-          id_tutorial: id_tutorial
+          revistaId: revistaId
         }
       };
     });
   }
 
   onChangeId_article(e) {
-    const id_article = e.target.value;
+    const articuloId = e.target.value;
     
     this.setState(prevState => ({
       currentTutorialarticle: {
         ...prevState.currentTutorialarticle,
-        id_article: id_article
+        articuloId: articuloId
       }
     }));
   }
@@ -69,7 +69,7 @@ export default class Tutorialarticle extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({
-          message: "The tutorialarticle was updated successfully!"
+          message: "La revista-articulo se actualizo!"
         });
       })
       .catch(e => {
@@ -95,25 +95,25 @@ export default class Tutorialarticle extends Component {
       <div>
         {currentTutorialarticle ? (
           <div className="edit-form">
-            <h4>Tutorial-article</h4>
+            <h4>Revista-article</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="id_tutorial">Id_tutorial</label>
+                <label htmlFor="revistaId">revistaId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_tutorial"
-                  value={currentTutorialarticle.id_tutorial}
+                  id="revistaId"
+                  value={currentTutorialarticle.revistaId}
                   onChange={this.onChangeId_tutorial}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="id_article">Id_article</label>
+                <label htmlFor="articuloId">articuloId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_article"
-                  value={currentTutorialarticle.id_article}
+                  id="articuloId"
+                  value={currentTutorialarticle.articuloId}
                   onChange={this.onChangeId_article}
                 />
               </div>
@@ -139,7 +139,7 @@ export default class Tutorialarticle extends Component {
         ) : (
           <div>
             <br />
-            <p>Please click on a Tutorialarticle...</p>
+            <p>Please click on a Revista-article...</p>
           </div>
         )}
       </div>

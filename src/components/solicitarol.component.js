@@ -14,7 +14,7 @@ export default class Solicitarol extends Component {
     this.state = {
       currentSolicitarol: {
         id: null,
-        id_user: "",
+        userId: "",
         comentario: "",
         estado: "",
       },
@@ -27,13 +27,13 @@ export default class Solicitarol extends Component {
   }
 
   onChangeId_user(e) {
-    const id_user = e.target.value;
+    const userId = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentSolicitarol: {
           ...prevState.currentSolicitarol,
-          id_user: id_user
+          userId: userId
         }
       };
     });
@@ -111,12 +111,12 @@ export default class Solicitarol extends Component {
             <h4>Solicita-rol</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="id_user">Id_user</label>
+                <label htmlFor="userId">userId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_user"
-                  value={currentSolicitarol.id_user}
+                  id="userId"
+                  value={currentSolicitarol.userId}
                   onChange={this.onChangeId_user}
                 />
               </div>

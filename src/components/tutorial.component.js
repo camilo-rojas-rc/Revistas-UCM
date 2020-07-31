@@ -14,8 +14,8 @@ export default class Tutorial extends Component {
     this.state = {
       currentTutorial: {
         id: null,
-        title: "",
-        description: "",
+        titulo: "",
+        descripcion: "",
         published: false
       },
       message: ""
@@ -27,25 +27,25 @@ export default class Tutorial extends Component {
   }
 
   onChangeTitle(e) {
-    const title = e.target.value;
+    const titulo = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentTutorial: {
           ...prevState.currentTutorial,
-          title: title
+          titulo: titulo
         }
       };
     });
   }
 
   onChangeDescription(e) {
-    const description = e.target.value;
+    const descripcion = e.target.value;
     
     this.setState(prevState => ({
       currentTutorial: {
         ...prevState.currentTutorial,
-        description: description
+        descripcion: descripcion
       }
     }));
   }
@@ -66,8 +66,8 @@ export default class Tutorial extends Component {
   updatePublished(status) {
     var data = {
       id: this.state.currentTutorial.id,
-      title: this.state.currentTutorial.title,
-      description: this.state.currentTutorial.description,
+      titulo: this.state.currentTutorial.titulo,
+      descripcion: this.state.currentTutorial.descripcion,
       published: status
     };
 
@@ -94,7 +94,7 @@ export default class Tutorial extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({
-          message: "The tutorial was updated successfully!"
+          message: "Revista actualizada!"
         });
       })
       .catch(e => {
@@ -120,25 +120,25 @@ export default class Tutorial extends Component {
       <div>
         {currentTutorial ? (
           <div className="edit-form">
-            <h4>Tutorial</h4>
+            <h4>Revistas</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="titulo">titulo</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="title"
-                  value={currentTutorial.title}
+                  id="titulo"
+                  value={currentTutorial.titulo}
                   onChange={this.onChangeTitle}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="description">Description</label>
+                <label htmlFor="descripcion">descripcion</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="description"
-                  value={currentTutorial.description}
+                  id="descripcion"
+                  value={currentTutorial.descripcion}
                   onChange={this.onChangeDescription}
                 />
               </div>
@@ -186,7 +186,7 @@ export default class Tutorial extends Component {
         ) : (
           <div>
             <br />
-            <p>Please click on a Tutorial...</p>
+            <p>Seleccione una revista...</p>
           </div>
         )}
       </div>

@@ -1,6 +1,8 @@
 import http from "../http-common";
+//se importa el archvo js que consume la api
 
 class ArticleDataService {
+  //funciones de get, post, put y delete con sus respectivas direcciones en el url de la api
   getAll() {
     return http.get("/articles");
   }

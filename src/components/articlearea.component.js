@@ -13,8 +13,8 @@ export default class Articlearea extends Component {
     this.state = {
       currentArticlearea: {
         id: null,
-        id_articulo: "null",
-        id_area: "null"
+        articleId: "null",
+        areaId: "null"
       },
       message: ""
     };
@@ -25,25 +25,25 @@ export default class Articlearea extends Component {
   }
 
   onChangeId_articulo(e) {
-    const id_articulo = e.target.value;
+    const articleId = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentArticlearea: {
           ...prevState.currentArticlearea,
-          id_articulo: id_articulo
+          articleId: articleId
         }
       };
     });
   }
 
   onChangeId_area(e) {
-    const id_area = e.target.value;
+    const areaId = e.target.value;
     
     this.setState(prevState => ({
       currentArticlearea: {
         ...prevState.currentArticlearea,
-        id_area: id_area
+        areaId: areaId
       }
     }));
   }
@@ -98,22 +98,22 @@ export default class Articlearea extends Component {
             <h4>Article-area</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="id_articulo">Id_articulo</label>
+                <label htmlFor="articleId">articleId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_articulo"
-                  value={currentArticlearea.id_articulo}
+                  id="articleId"
+                  value={currentArticlearea.articleId}
                   onChange={this.onChangeId_articulo}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="id_area">Id_area</label>
+                <label htmlFor="areaId">areaId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_area"
-                  value={currentArticlearea.id_area}
+                  id="areaId"
+                  value={currentArticlearea.areaId}
                   onChange={this.onChangeId_area}
                 />
               </div>

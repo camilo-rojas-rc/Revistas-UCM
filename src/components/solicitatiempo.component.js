@@ -15,8 +15,8 @@ export default class Solicitatiempo extends Component {
     this.state = {
       currentSolicitatiempo: {
         id: null,
-        id_user: "",
-        id_articulo: "", 
+        userId: "",
+        articleId: "", 
         dias: "",
         comentario: ""
       },
@@ -29,25 +29,25 @@ export default class Solicitatiempo extends Component {
   }
 
   onChangeId_user(e) {
-    const id_user = e.target.value;
+    const userId = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentSolicitatiempo: {
           ...prevState.currentSolicitatiempo,
-          id_user: id_user
+          userId: userId
         }
       };
     });
   }
 
   onChangeId_articulo(e) {
-    const id_articulo = e.target.value;
+    const articleId = e.target.value;
     
     this.setState(prevState => ({
       currentSolicitatiempo: {
         ...prevState.currentSolicitatiempo,
-        id_articulo: id_articulo
+        articleId: articleId
       }
     }));
   }
@@ -124,22 +124,22 @@ export default class Solicitatiempo extends Component {
             <h4>Solicita-tiempo</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="id_user">Id_user</label>
+                <label htmlFor="userId">userId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_user"
-                  value={currentSolicitatiempo.id_user}
+                  id="userId"
+                  value={currentSolicitatiempo.userId}
                   onChange={this.onChangeId_user}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="id_articulo">Id_articulo</label>
+                <label htmlFor="articleId">articleId</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="id_articulo"
-                  value={currentSolicitatiempo.id_articulo}
+                  id="articleId"
+                  value={currentSolicitatiempo.articleId}
                   onChange={this.onChangeId_articulo}
                 />
               </div>

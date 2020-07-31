@@ -123,7 +123,7 @@ export default class UserareasList extends Component {
                   onClick={() => this.setActiveUserarea(userarea, index)}
                   key={index}
                 >
-                  {userarea.id_user}
+                  {userarea.userId}
                 </li>
               ))}
           </ul>
@@ -140,15 +140,15 @@ export default class UserareasList extends Component {
               <h4>User-area</h4>
               <div>
                 <label>
-                  <strong>Id_user:</strong>
+                  <strong>userId:</strong>
                 </label>{" "}
-                {currentUserarea.id_user}
+                {currentUserarea.userId}
               </div>
               <div>
                 <label>
-                  <strong>Id_area:</strong>
+                  <strong>areaId:</strong>
                 </label>{" "}
-                {currentUserarea.id_area}
+                {currentUserarea.areaId}
               </div>
 
               <Link
