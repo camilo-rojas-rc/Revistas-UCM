@@ -94,7 +94,7 @@ export default class TutorialsList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by titulo"
+              placeholder="Search by title"
               value={searchTitle}
               onChange={this.onChangeSearchTitle}
             />
@@ -123,7 +123,7 @@ export default class TutorialsList extends Component {
                   onClick={() => this.setActiveTutorial(tutorial, index)}
                   key={index}
                 >
-                  {tutorial.titulo}
+                  {tutorial.title}
                 </li>
               ))}
           </ul>
@@ -140,15 +140,15 @@ export default class TutorialsList extends Component {
               <h4>Revista</h4>
               <div>
                 <label>
-                  <strong>titulo:</strong>
+                  <strong>title:</strong>
                 </label>{" "}
-                {currentTutorial.titulo}
+                {currentTutorial.title}
               </div>
               <div>
                 <label>
-                  <strong>descripcion:</strong>
+                  <strong>description:</strong>
                 </label>{" "}
-                {currentTutorial.descripcion}
+                {currentTutorial.description}
               </div>
               <div>
                 <label>

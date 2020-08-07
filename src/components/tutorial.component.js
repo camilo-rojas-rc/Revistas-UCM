@@ -14,8 +14,8 @@ export default class Tutorial extends Component {
     this.state = {
       currentTutorial: {
         id: null,
-        titulo: "",
-        descripcion: "",
+        title: "",
+        description: "",
         published: false
       },
       message: ""
@@ -27,25 +27,25 @@ export default class Tutorial extends Component {
   }
 
   onChangeTitle(e) {
-    const titulo = e.target.value;
+    const title = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentTutorial: {
           ...prevState.currentTutorial,
-          titulo: titulo
+          title: title
         }
       };
     });
   }
 
   onChangeDescription(e) {
-    const descripcion = e.target.value;
+    const description = e.target.value;
     
     this.setState(prevState => ({
       currentTutorial: {
         ...prevState.currentTutorial,
-        descripcion: descripcion
+        description: description
       }
     }));
   }
@@ -66,8 +66,8 @@ export default class Tutorial extends Component {
   updatePublished(status) {
     var data = {
       id: this.state.currentTutorial.id,
-      titulo: this.state.currentTutorial.titulo,
-      descripcion: this.state.currentTutorial.descripcion,
+      title: this.state.currentTutorial.title,
+      description: this.state.currentTutorial.description,
       published: status
     };
 
@@ -123,22 +123,22 @@ export default class Tutorial extends Component {
             <h4>Revistas</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="titulo">titulo</label>
+                <label htmlFor="title">title</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="titulo"
-                  value={currentTutorial.titulo}
+                  id="title"
+                  value={currentTutorial.title}
                   onChange={this.onChangeTitle}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="descripcion">descripcion</label>
+                <label htmlFor="description">description</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="descripcion"
-                  value={currentTutorial.descripcion}
+                  id="description"
+                  value={currentTutorial.description}
                   onChange={this.onChangeDescription}
                 />
               </div>

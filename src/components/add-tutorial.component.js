@@ -13,8 +13,8 @@ export default class AddTutorial extends Component {
     //declaracion de los strings que se usaran en las funciones
     this.state = {
       id: null,
-      titulo: "",
-      descripcion: "", 
+      title: "",
+      description: "", 
       published: false,
 
       submitted: false
@@ -24,21 +24,21 @@ export default class AddTutorial extends Component {
   //las funciones onChange toman el valor pasado por un formulario y lo guardan en un string
   onChangeTitle(e) {
     this.setState({
-      titulo: e.target.value
+      title: e.target.value
     });
   }
 
   onChangeDescription(e) {
     this.setState({
-      descripcion: e.target.value
+      description: e.target.value
     });
   }
 
   //funcion que guarda los datos en la bd
   saveTutorial() {
     var data = {
-      titulo: this.state.titulo,
-      descripcion: this.state.descripcion
+      title: this.state.title,
+      description: this.state.description
     };
 
     //se hace un llamada a la funcion create para crear una tabla con los valores pasados pr formulario
@@ -46,8 +46,8 @@ export default class AddTutorial extends Component {
       .then(response => {
         this.setState({
           id: response.data.id,
-          titulo: response.data.titulo,
-          descripcion: response.data.descripcion,
+          title: response.data.title,
+          description: response.data.description,
           published: response.data.published,
 
           submitted: true
@@ -63,8 +63,8 @@ export default class AddTutorial extends Component {
   newTutorial() {
     this.setState({
       id: null,
-      titulo: "",
-      descripcion: "",
+      title: "",
+      description: "",
       published: false,
 
       submitted: false
@@ -81,28 +81,28 @@ export default class AddTutorial extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="titulo">titulo</label>
+              <label htmlFor="title">title</label>
               <input
                 type="text"
                 className="form-control"
-                id="titulo"
+                id="title"
                 required
-                value={this.state.titulo}
+                value={this.state.title}
                 onChange={this.onChangeTitle}
-                name="titulo"
+                name="title"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="descripcion">descripcion</label>
+              <label htmlFor="description">description</label>
               <input
                 type="text"
                 className="form-control"
-                id="descripcion"
+                id="description"
                 required
-                value={this.state.descripcion}
+                value={this.state.description}
                 onChange={this.onChangeDescription}
-                name="descripcion"
+                name="description"
               />
             </div>
 

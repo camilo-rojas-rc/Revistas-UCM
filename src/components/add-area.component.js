@@ -10,7 +10,7 @@ export default class AddArea extends Component {
 
     this.state = {
       id: null,
-      nombre: "",
+      name: "",
 
       submitted: false
     };
@@ -18,20 +18,20 @@ export default class AddArea extends Component {
 
   onChangeName(e) {
     this.setState({
-      nombre: e.target.value
+      name: e.target.value
     });
   }
 
   saveArea() {
     var data = {
-      nombre: this.state.nombre
+      name: this.state.name
     };
 
     AreaDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          nombre: response.data.nombre,
+          name: response.data.name,
 
           submitted: true
         });
@@ -45,7 +45,7 @@ export default class AddArea extends Component {
   newArea() {
     this.setState({
       id: null,
-      nombre: "",
+      name: "",
 
       submitted: false
     });
@@ -61,15 +61,15 @@ export default class AddArea extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="nombre">nombre</label>
+              <label htmlFor="name">name</label>
               <input
                 type="text"
                 className="form-control"
-                id="nombre"
+                id="name"
                 required
-                value={this.state.nombre}
+                value={this.state.name}
                 onChange={this.onChangeName}
-                nombre="nombre"
+                name="name"
               />
             </div>
             

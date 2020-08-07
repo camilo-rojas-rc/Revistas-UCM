@@ -13,8 +13,8 @@ export default class Tutorialarticle extends Component {
     this.state = {
       currentTutorialarticle: {
         id: null,
-        revistaId: "null",
-        articuloId: "null"
+        id_tutorial: "null",
+        id_article: "null"
       },
       message: ""
     };
@@ -25,25 +25,25 @@ export default class Tutorialarticle extends Component {
   }
 
   onChangeId_tutorial(e) {
-    const revistaId = e.target.value;
+    const id_tutorial = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentTutorialarticle: {
           ...prevState.currentTutorialarticle,
-          revistaId: revistaId
+          id_tutorial: id_tutorial
         }
       };
     });
   }
 
   onChangeId_article(e) {
-    const articuloId = e.target.value;
+    const id_article = e.target.value;
     
     this.setState(prevState => ({
       currentTutorialarticle: {
         ...prevState.currentTutorialarticle,
-        articuloId: articuloId
+        id_article: id_article
       }
     }));
   }
@@ -98,22 +98,22 @@ export default class Tutorialarticle extends Component {
             <h4>Revista-article</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="revistaId">revistaId</label>
+                <label htmlFor="id_tutorial">id_tutorial</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="revistaId"
-                  value={currentTutorialarticle.revistaId}
+                  id="id_tutorial"
+                  value={currentTutorialarticle.id_tutorial}
                   onChange={this.onChangeId_tutorial}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="articuloId">articuloId</label>
+                <label htmlFor="id_article">id_article</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="articuloId"
-                  value={currentTutorialarticle.articuloId}
+                  id="id_article"
+                  value={currentTutorialarticle.id_article}
                   onChange={this.onChangeId_article}
                 />
               </div>

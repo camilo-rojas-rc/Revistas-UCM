@@ -5,6 +5,7 @@ export default class AddArticle extends Component {
   constructor(props) {
     super(props);
     //declaracion de la funciones
+    this.onChangeId_user = this.onChangeId_user.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeState = this.onChangeState.bind(this);
     this.onChangeDocument = this.onChangeDocument.bind(this);
@@ -15,66 +16,74 @@ export default class AddArticle extends Component {
     this.newArticle = this.newArticle.bind(this);
 
     //declaracion de los strings que se usaran en las funciones
-    this.estado = {
-        id: null,
-        titulo: "",
-        estado: "",
-        documento: "",
-        comentario: "",
-        descripcion: "",
-        autores: "",
-        publicado: false,
+    this.state = {
+      id: null,
+      id_user: "",
+      title: "",
+      state: "",
+      document: "",
+      commentary: "",
+      description: "",
+      authors: "",
+      published: false,
 
-        submitted: false
+      submitted: false
     };
+  }
+
+  onChangeId_user(e) {
+    this.setState({
+      id_user: e.target.value
+    });
   }
 
   //las funciones onChange toman el valor pasado por un formulario y lo guardan en un string
   onChangeTitle(e) {
     this.setState({
-      titulo: e.target.value
+      title: e.target.value
     });
   }
 
   onChangeState(e) {
     this.setState({
-      estado: e.target.value
+      state: e.target.value
     });
   }
 
   onChangeDocument(e) {
     this.setState({
-      documento: e.target.value
+      document: e.target.value
     });
   }
 
   onChangeCommentary(e) {
     this.setState({
-      comentario: e.target.value
+      commentary: e.target.value
     });
   }
 
   onChangeDescription(e) {
     this.setState({
-      descripcion: e.target.value
+      description: e.target.value
     });
   }
 
   onChangeAuthors(e) {
     this.setState({
-      autores: e.target.value
+      authors: e.target.value
     });
   }
 
   //funcion que guarda los datos en la bd
   saveArticle() {
     var data = {
-      titulo: this.estado.titulo,
-      estado: this.estado.estado,
-      documento: this.estado.documento,
-      comentario: this.estado.comentario,
-      descripcion: this.estado.descripcion,
-      autores: this.estado.autores
+      id_user: this.props.match.params.id,
+      title: this.state.title,
+      state: this.state.state,
+      document: this.state.document,
+      commentary: this.state.commentary,
+      description: this.state.description,
+      authors: this.state.authors
     };
 
     //se hace un llamada a la funcion create para crear una tabla con los valores pasados pr formulario
@@ -82,13 +91,14 @@ export default class AddArticle extends Component {
       .then(response => {
         this.setState({
           id: response.data.id,
-          titulo: response.data.titulo,
-          estado: response.data.estado,
-          documento: response.data.documento,
-          comentario: response.data.comentario,
-          descripcion: response.data.descripcion,
-          autores: response.data.autores,
-          publicado: response.data.publicado,
+          id_user: this.props.match.params.id,
+          title: response.data.title,
+          state: response.data.state,
+          document: response.data.document,
+          commentary: response.data.commentary,
+          description: response.data.description,
+          authors: response.data.authors,
+          published: response.data.published,
 
           submitted: true
         });
@@ -103,13 +113,14 @@ export default class AddArticle extends Component {
   newArticle() {
     this.setState({
       id: null,
-      titulo: "",
-      estado: "",
-      documento: "",
-      comentario: "",
-      descripcion: "",
-      autores: "",
-      publicado: false,
+      id_user: "",
+      title: "",
+      state: "",
+      document: "",
+      commentary: "",
+      description: "",
+      authors: "",
+      published: false,
 
       submitted: false
     });
@@ -119,95 +130,108 @@ export default class AddArticle extends Component {
     return (
       //formulario para la creacion de un nuevo articulo
       <div className="submit-form">
-        {this.estado.submitted ? (
+        {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
           </div>
         ) : (
-          <div>
-            <div className="form-group">
-              <label htmlFor="titulo">titulo</label>
-              <input
-                type="text"
-                className="form-control"
-                id="titulo"
-                required
-                value={this.estado.titulo}
-                onChange={this.onChangeTitle}
-                name="titulo"
-              />
-            </div>
+            <div>
+              <div className="form-group">
+                <label htmlFor="id_user">id_user</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="id_user"
+                  required
+                  value={this.props.match.params.id}
+                  onChange={this.onChangeId_user}
+                  name="id_user"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="estado">estado</label>
-              <input
-                type="text"
-                className="form-control"
-                id="estado"
-                required
-                value={this.estado.estado}
-                onChange={this.onChangeState}
-                name="estado"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="title">title</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="title"
+                  required
+                  value={this.state.title}
+                  onChange={this.onChangeTitle}
+                  name="title"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="documento">documento</label>
-              <input
-                type="text"
-                className="form-control"
-                id="documento"
-                required
-                value={this.estado.documento}
-                onChange={this.onChangeDocument}
-                name="documento"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="state">state</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="state"
+                  required
+                  value={this.state.state}
+                  onChange={this.onChangeState}
+                  name="state"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="comentario">comentario</label>
-              <input
-                type="text"
-                className="form-control"
-                id="comentario"
-                required
-                value={this.estado.comentario}
-                onChange={this.onChangeCommentary}
-                name="comentario"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="document">document</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="document"
+                  required
+                  value={this.state.document}
+                  onChange={this.onChangeDocument}
+                  name="document"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="descripcion">descripcion</label>
-              <input
-                type="text"
-                className="form-control"
-                id="descripcion"
-                required
-                value={this.estado.descripcion}
-                onChange={this.onChangeDescription}
-                name="descripcion"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="commentary">commentary</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="commentary"
+                  required
+                  value={this.state.commentary}
+                  onChange={this.onChangeCommentary}
+                  name="commentary"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="autores">autores</label>
-              <input
-                type="text"
-                className="form-control"
-                id="autores"
-                required
-                value={this.estado.autores}
-                onChange={this.onChangeAuthors}
-                name="autores"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="description">description</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="description"
+                  required
+                  value={this.state.description}
+                  onChange={this.onChangeDescription}
+                  name="description"
+                />
+              </div>
 
-            <button onClick={this.saveArticle} className="btn btn-success">
-              Submit
+              <div className="form-group">
+                <label htmlFor="authors">authors</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="authors"
+                  required
+                  value={this.state.authors}
+                  onChange={this.onChangeAuthors}
+                  name="authors"
+                />
+              </div>
+
+              <button onClick={this.saveArticle} className="btn btn-success">
+                Submit
             </button>
-          </div>
-        )}
+            </div>
+          )}
       </div>
     );
   }

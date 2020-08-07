@@ -33,12 +33,10 @@ export default class Profile extends Component {
           <strong>Email:</strong>{" "}
           {currentUser.email}
         </p>
-        <strong>Authorities:</strong>
-        <ul>
-          {currentUser.roles &&
-            currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-        </ul>
-      </div>
+        <div className="container">
+          <a href={`/solicitarols/add/${currentUser.id}`} class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Cambiar Rol</a>
+        </div>
+      </div >
     );
   }
 }

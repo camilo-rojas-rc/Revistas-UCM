@@ -12,7 +12,7 @@ export default class Area extends Component {
     this.state = {
       currentArea: {
         id: null,
-        nombre: ""
+        name: ""
       },
       message: ""
     };
@@ -23,13 +23,13 @@ export default class Area extends Component {
   }
 
   onChangeName(e) {
-    const nombre = e.target.value;
+    const name = e.target.value;
 
     this.setState(function(prevState) {
       return {
         currentArea: {
           ...prevState.currentArea,
-          nombre: nombre
+          name: name
         }
       };
     });
@@ -85,12 +85,12 @@ export default class Area extends Component {
             <h4>Area</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="nombre">nombre</label>
+                <label htmlFor="name">name</label>
                 <input
                   type="text"
                   className="form-control"
-                  id="nombre"
-                  value={currentArea.nombre}
+                  id="name"
+                  value={currentArea.name}
                   onChange={this.onChangeName}
                 />
               </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ArticleDataService from "../services/article.service";
 import { Link } from "react-router-dom";
+import AuthService from "../services/auth.service";
 
 export default class ArticlesList extends Component {
   constructor(props) {
@@ -14,11 +15,12 @@ export default class ArticlesList extends Component {
     this.searchTitle = this.searchTitle.bind(this);
 
     //declaracion de los strings que se usaran en las funciones
-    this.estado = {
+    this.state = {
       articles: [],
       currentArticle: null,
       currentIndex: -1,
-      searchTitle: ""
+      searchTitle: "",
+      currentUser: AuthService.getCurrentUser()
     };
   }
 
@@ -81,7 +83,7 @@ export default class ArticlesList extends Component {
 
   //funcion que busca un determinado dato en una tabla
   searchTitle() {
-    ArticleDataService.findByTitle(this.estado.searchTitle)//llama a la funcion findByTitle
+    ArticleDataService.findByTitle(this.state.searchTitle)//llama a la funcion findByTitle
       .then(response => {
         this.setState({
           articles: response.data
@@ -94,7 +96,7 @@ export default class ArticlesList extends Component {
   }
 
   render() {
-    const { searchTitle, articles, currentArticle, currentIndex } = this.estado;
+    const { searchTitle, articles, currentArticle, currentIndex, currentUser } = this.state;
 
     return (
       //template que muestra todos los articulos
@@ -134,13 +136,13 @@ export default class ArticlesList extends Component {
                   onClick={() => this.setActiveArticle(article, index)}
                   key={index}
                 >
-                  {article.titulo}
+                  {article.title}
                 </li>
               ))}
           </ul>
 
           <button className="m-3 btn btn-sm btn-danger">
-            <Link to={"/articles/add"}>
+            <Link to={`/articles/add/${currentUser.id}`}>
               Add
             </Link>
           </button>
@@ -151,45 +153,51 @@ export default class ArticlesList extends Component {
               <h4>Article</h4>
               <div>
                 <label>
-                  <strong>titulo:</strong>
+                  <strong>id_user:</strong>
                 </label>{" "}
-                {currentArticle.titulo}
+                {currentArticle.id_user}
               </div>
               <div>
                 <label>
-                  <strong>estado:</strong>
+                  <strong>title:</strong>
                 </label>{" "}
-                {currentArticle.estado}
+                {currentArticle.title}
               </div>
               <div>
                 <label>
-                  <strong>documento:</strong>
+                  <strong>state:</strong>
                 </label>{" "}
-                {currentArticle.documento}
+                {currentArticle.state}
               </div>
               <div>
                 <label>
-                  <strong>comentario:</strong>
+                  <strong>document:</strong>
                 </label>{" "}
-                {currentArticle.comentario}
+                {currentArticle.document}
               </div>
               <div>
                 <label>
-                  <strong>descripcion:</strong>
+                  <strong>commentary:</strong>
                 </label>{" "}
-                {currentArticle.descripcion}
+                {currentArticle.commentary}
               </div>
               <div>
                 <label>
-                  <strong>autores:</strong>
+                  <strong>description:</strong>
                 </label>{" "}
-                {currentArticle.autores}
+                {currentArticle.description}
+              </div>
+              <div>
+                <label>
+                  <strong>authors:</strong>
+                </label>{" "}
+                {currentArticle.authors}
               </div>
               <div>
                 <label>
                   <strong>Status:</strong>
                 </label>{" "}
-                {currentArticle.publicado ? "publicado" : "Pending"}
+                {currentArticle.published ? "published" : "Pending"}
               </div>
 
               <Link

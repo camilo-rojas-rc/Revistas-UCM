@@ -4,17 +4,16 @@ import SolicitarolDataService from "../services/solicitarol.service";
 export default class AddSolicitarol extends Component {
   constructor(props) {
     super(props);
-    this.onChangeId_user = this.onChangeId_user.bind(this);
     this.onChangeComentario = this.onChangeComentario.bind(this);
-    this.onChangeEstado = this.onChangeEstado.bind(this);
+    this.onChangeId_user = this.onChangeId_user.bind(this);
     this.saveSolicitarol = this.saveSolicitarol.bind(this);
     this.newSolicitarol = this.newSolicitarol.bind(this);
 
     this.state = {
       id: null,
-      userId: "",
-      comentario: "", 
-      estado: "",
+      id_user: "",
+      comentario: "",
+      estado: false,
 
       submitted: false
     };
@@ -22,34 +21,27 @@ export default class AddSolicitarol extends Component {
 
   onChangeId_user(e) {
     this.setState({
-        userId: e.target.value
+      id_user: e.target.value
     });
   }
 
   onChangeComentario(e) {
     this.setState({
-        comentario: e.target.value
-    });
-  }
-
-  onChangeEstado(e) {
-    this.setState({
-        estado: e.target.value
+      comentario: e.target.value
     });
   }
 
   saveSolicitarol() {
     var data = {
-        userId: this.state.userId,
-        comentario: this.state.comentario,
-        estado: this.state.estado
+      id_user: this.props.match.params.id,
+      comentario: this.state.comentario
     };
 
     SolicitarolDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          userId: response.data.userId,
+          id_user: this.props.match.params.id,
           comentario: response.data.comentario,
           estado: response.data.estado,
 
@@ -65,9 +57,9 @@ export default class AddSolicitarol extends Component {
   newSolicitarol() {
     this.setState({
       id: null,
-      userId: "",
+      id_user: "",
       comentario: "",
-      estado: "",
+      estado: false,
 
       submitted: false
     });
@@ -81,51 +73,41 @@ export default class AddSolicitarol extends Component {
             <h4>You submitted successfully!</h4>
           </div>
         ) : (
-          <div>
-            <div className="form-group">
-              <label htmlFor="userId">userId</label>
-              <input
-                type="text"
-                className="form-control"
-                id="userId"
-                required
-                value={this.state.userId}
-                onChange={this.onChangeId_user}
-                name="userId"
-              />
-            </div>
+            <div>
+              <h3>
+                <strong>Solicitud para Revisor</strong>
+              </h3>
+              <div className="form-group">
+                <label htmlFor="id_user">id_user</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="id_user"
+                  required
+                  value={this.props.match.params.id}
+                  onChange={this.onChangeId_user}
+                  name="id_user"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="comentario">Comentario</label>
-              <input
-                type="text"
-                className="form-control"
-                id="comentario"
-                required
-                value={this.state.comentario}
-                onChange={this.onChangeComentario}
-                name="comentario"
-              />
-            </div>
+              <div className="form-group">
+                <label htmlFor="comentario">Comentario</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="comentario"
+                  required
+                  value={this.state.comentario}
+                  onChange={this.onChangeComentario}
+                  name="comentario"
+                />
+              </div>
 
-            <div className="form-group">
-              <label htmlFor="estado">estado</label>
-              <input
-                type="text"
-                className="form-control"
-                id="estado"
-                required
-                value={this.state.estado}
-                onChange={this.onChangeEstado}
-                name="estado"
-              />
-            </div>
-
-            <button onClick={this.saveSolicitarol} className="btn btn-success">
-              Submit
+              <button onClick={this.saveSolicitarol} className="btn btn-success">
+                Submit
             </button>
-          </div>
-        )}
+            </div>
+          )}
       </div>
     );
   }

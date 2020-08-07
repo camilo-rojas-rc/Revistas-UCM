@@ -105,8 +105,8 @@ class App extends Component {
 
               {currentUser && (
                 <li className="nav-item">
-                  <Link to={"/user"} className="nav-link">
-                    User
+                  <Link to={"/profile"} className="nav-link">
+                    Mi Perfil
                   </Link>
                 </li>
               )}
@@ -177,7 +177,7 @@ class App extends Component {
               <Route exact path="/tutorials/add" component={AddTutorial} />
               <Route path="/tutorials/:id" component={Tutorial} />
               <Route exact path={["/articles"]} component={ArticlesList} />
-              <Route exact path="/articles/add" component={AddArticle} />
+              <Route exact path="/articles/add/:id" component={AddArticle} />
               <Route path="/articles/:id" component={Article} />
               <Route exact path={["/users"]} component={UsersList} />
               <Route exact path="/users/add" component={AddUser} />
@@ -189,7 +189,7 @@ class App extends Component {
               <Route exact path="/tutorialarticles/add" component={AddTutorialarticle} />
               <Route path="/tutorialarticles/:id" component={Tutorialarticle} />
               <Route exact path={["/userareas"]} component={UserareasList} />
-              <Route exact path="/userareas/add" component={AddUserarea} />
+              <Route exact path="/userareas/add/:id1/:id2" component={AddUserarea} />
               <Route path="/userareas/:id" component={Userarea} />
               <Route exact path={["/tutorialareas"]} component={TutorialareasList} />
               <Route exact path="/tutorialareas/add" component={AddTutorialarea} />
@@ -201,7 +201,7 @@ class App extends Component {
               <Route exact path="/solicitatiempos/add" component={AddSolicitatiempo} />
               <Route path="/solicitatiempos/:id" component={Solicitatiempo} />
               <Route exact path={["/solicitarols"]} component={SolicitarolsList} />
-              <Route exact path="/solicitarols/add" component={AddSolicitarol} />
+              <Route exact path="/solicitarols/add/:id" component={AddSolicitarol} />
               <Route path="/solicitarols/:id" component={Solicitarol} />
               <Route exact path={["/asignacions"]} component={AsignacionsList} />
               <Route exact path="/asignacions/add" component={AddAsignacion} />

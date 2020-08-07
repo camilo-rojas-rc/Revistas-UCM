@@ -11,37 +11,36 @@ export default class AddUserarea extends Component {
 
     this.state = {
       id: null,
-      userId: "null",
-      areaId: "null",
-
+      id_user: "null",
+      id_area: "null",
       submitted: false
     };
   }
 
   onChangeId_user(e) {
     this.setState({
-      userId: e.target.value
+      id_user: this.props.match.params.id1
     });
   }
 
   onChangeId_area(e) {
     this.setState({
-      areaId: e.target.value
+      id_area: this.props.match.params.id2
     });
   }
 
   saveUserarea() {
     var data = {
-        userId: this.state.userId,
-        areaId: this.state.areaId
+        id_user: this.props.match.params.id1,
+        id_area: this.props.match.params.id2
     };
 
     UserareaDataService.create(data)
       .then(response => {
         this.setState({
           id: response.data.id,
-          userId: response.data.userId,
-          areaId: response.data.areaId,
+          id_user: this.props.match.params.id1,
+          id_area: this.props.match.params.id2,
 
           submitted: true
         });
@@ -55,14 +54,16 @@ export default class AddUserarea extends Component {
   newUserarea() {
     this.setState({
       id: null,
-      userId: "null",
-      areaId: "null",
+      id_user: "null",
+      id_area: "null",
 
       submitted: false
     });
   }
 
   render() {
+    const { currentUser } = this.state;
+
     return (
       <div className="submit-form">
         {this.state.submitted ? (
@@ -72,28 +73,28 @@ export default class AddUserarea extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="userId">userId</label>
+              <label htmlFor="id_user">id_user</label>
               <input
                 type="text"
                 className="form-control"
-                id="userId"
+                id="id_user"
                 required
-                value={this.state.userId}
+                value={this.props.match.params.id1}
                 onChange={this.onChangeId_user}
-                name="userId"
+                name="id_user"
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="areaId">areaId</label>
+              <label htmlFor="id_area">id_area</label>
               <input
                 type="text"
                 className="form-control"
-                id="areaId"
+                id="id_area"
                 required
-                value={this.state.areaId}
+                value={this.props.match.params.id2}
                 onChange={this.onChangeId_area}
-                name="areaId"
+                name="id_area"
               />
             </div>
 

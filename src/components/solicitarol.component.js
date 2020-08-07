@@ -1,24 +1,18 @@
 import React, { Component } from "react";
-import SolicitarolDataService from "../services/solicitarol.service";
+import RoleService from "../services/solicitarol.service";
 
 export default class Solicitarol extends Component {
   constructor(props) {
     super(props);
-    this.onChangeId_user = this.onChangeId_user.bind(this);
-    this.onChangeComentario = this.onChangeComentario.bind(this);
-    this.onChangeEstado = this.onChangeEstado.bind(this);
     this.getSolicitarol = this.getSolicitarol.bind(this);
     this.updateSolicitarol = this.updateSolicitarol.bind(this);
-    this.deleteSolicitarol = this.deleteSolicitarol.bind(this);
+    this.refreshList = this.refreshList.bind(this);
+    this.setActiveSolicitarol = this.setActiveSolicitarol.bind(this);
 
     this.state = {
-      currentSolicitarol: {
-        id: null,
-        userId: "",
-        comentario: "",
-        estado: "",
-      },
-      message: ""
+      solicitarols: [],
+      currentSolicitarol: null,
+      currentIndex: -1
     };
   }
 
@@ -26,145 +20,142 @@ export default class Solicitarol extends Component {
     this.getSolicitarol(this.props.match.params.id);
   }
 
-  onChangeId_user(e) {
-    const userId = e.target.value;
+  getSolicitarol(id) {
+    RoleService.get(id)
+      .then(response => {
+        this.setState({
+          solicitarols: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
 
-    this.setState(function(prevState) {
-      return {
-        currentSolicitarol: {
-          ...prevState.currentSolicitarol,
-          userId: userId
-        }
-      };
+  updateSolicitarol(status) {
+    var data = {
+      id: this.state.currentSolicitarol.id,
+      roles: status,
+      username: this.state.currentSolicitarol.username,
+      email: this.state.currentSolicitarol.email,
+      password: this.state.currentSolicitarol.password
+    };
+
+    //se hace un llamada a la funcion update para crear una tabla con los valores pasados pr formulario
+    RoleService.update(this.state.currentSolicitarol.id, data)
+      .then(response => {
+        this.setState(prevState => ({
+          currentSolicitarol: {
+            ...prevState.currentSolicitarol,
+            roles: status
+          }
+        }));
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  refreshList() {
+    this.retrieveSolicitarols();
+    this.setState({
+      currentSolicitarol: null,
+      currentIndex: -1
     });
   }
 
-  onChangeComentario(e) {
-    const comentario = e.target.value;
-    
-    this.setState(prevState => ({
-      currentSolicitarol: {
-        ...prevState.currentSolicitarol,
-        comentario: comentario
-      }
-    }));
-  }
-
-  onChangeEstado(e) {
-    const estado = e.target.value;
-    
-    this.setState(prevState => ({
-      currentSolicitarol: {
-        ...prevState.currentSolicitarol,
-        estado: estado
-      }
-    }));
-  }
-
-  getSolicitarol(id) {
-    SolicitarolDataService.get(id)
-      .then(response => {
-        this.setState({
-          currentSolicitarol: response.data
-        });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
-  updateSolicitarol() {
-    SolicitarolDataService.update(
-      this.state.currentSolicitarol.id,
-      this.state.currentSolicitarol
-    )
-      .then(response => {
-        console.log(response.data);
-        this.setState({
-          message: "The Solicitarol was updated successfully!"
-        });
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
-  deleteSolicitarol() {    
-    SolicitarolDataService.delete(this.state.currentSolicitarol.id)
-      .then(response => {
-        console.log(response.data);
-        this.props.history.push('/solicitarols')
-      })
-      .catch(e => {
-        console.log(e);
-      });
+  setActiveSolicitarol(solicitarol, index) {
+    this.setState({
+      currentSolicitarol: solicitarol,
+      currentIndex: index
+    });
   }
 
   render() {
-    const { currentSolicitarol } = this.state;
+    const { solicitarols, currentSolicitarol, currentIndex } = this.state;
 
     return (
-      <div>
-        {currentSolicitarol ? (
-          <div className="edit-form">
-            <h4>Solicita-rol</h4>
-            <form>
-              <div className="form-group">
-                <label htmlFor="userId">userId</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="userId"
-                  value={currentSolicitarol.userId}
-                  onChange={this.onChangeId_user}
-                />
+      <div className="list row">
+        <div className="col-md-6">
+          <h4>Solicita-rols List</h4>
+
+          <ul className="list-group">
+            {solicitarols &&
+              solicitarols.map((solicitarol, index) => (
+                <li
+                  className={
+                    "list-group-item " +
+                    (index === currentIndex ? "active" : "")
+                  }
+                  onClick={() => this.setActiveSolicitarol(solicitarol, index)}
+                  key={index}
+                >
+                  {solicitarol.username}
+                </li>
+              ))}
+          </ul>
+
+        </div>
+        <div className="col-md-6">
+          {currentSolicitarol ? (
+            <div>
+              <h4>Solicita-rol</h4>
+              <div>
+                <label>
+                  <strong>ID:</strong>
+                </label>{" "}
+                {currentSolicitarol.id}
               </div>
-              <div className="form-group">
-                <label htmlFor="comentario">Comentario</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="comentario"
-                  value={currentSolicitarol.comentario}
-                  onChange={this.onChangeComentario}
-                />
+              <div>
+                <label>
+                  <strong>Nombre:</strong>
+                </label>{" "}
+                {currentSolicitarol.username}
               </div>
-              <div className="form-group">
-                <label htmlFor="estado">Estado</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="estado"
-                  value={currentSolicitarol.estado}
-                  onChange={this.onChangeEstado}
-                />
+              <div>
+                <label>
+                  <strong>Email:</strong>
+                </label>{" "}
+                {currentSolicitarol.email}
+              </div>
+              <div>
+                <label>
+                  <strong>PassWord:</strong>
+                </label>{" "}
+                {currentSolicitarol.password}
+              </div>
+              <div>
+                <label>
+                  <strong>Role:</strong>
+                </label>{" "}
+                {currentSolicitarol.roles ? "5f2388f633e09f1128a76e02" : "5f2388f633e09f1128a76e03"}
               </div>
 
-            </form>
-
-            <button
-              className="badge badge-danger mr-2"
-              onClick={this.deleteSolicitarol}
-            >
-              Delete
-            </button>
-
-            <button
-              type="submit"
-              className="badge badge-success"
-              onClick={this.updateSolicitarol}
-            >
-              Update
-            </button>
-            <p>{this.state.message}</p>
-          </div>
-        ) : (
-          <div>
-            <br />
-            <p>Please click on a Solicitarol...</p>
-          </div>
-        )}
+              {currentSolicitarol.roles ? (
+              <button
+                className="badge badge-primary mr-2"
+                onClick={() => this.updateSolicitarol(false)}
+              >
+                Autor
+              </button>
+            ) : (
+                <button
+                  className="badge badge-primary mr-2"
+                  onClick={() => this.updateSolicitarol(true)}
+                >
+                  Revisor
+                </button>
+              )}
+            </div>
+          ) : (
+              <div>
+                <br />
+                <p>Please click on a Solicitarol...</p>
+              </div>
+            )}
+        </div>
       </div>
     );
   }

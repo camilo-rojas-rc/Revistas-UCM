@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AreaDataService from "../services/area.service";
 import { Link } from "react-router-dom";
+import AuthService from "../services/auth.service";
 
 export default class AreasList extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export default class AreasList extends Component {
       areas: [],
       currentAreas: null,
       currentIndex: -1,
-      searchName: ""
+      searchName: "",
+      currentUser: AuthService.getCurrentUser()
     };
   }
 
@@ -85,7 +87,7 @@ export default class AreasList extends Component {
   }
 
   render() {
-    const { searchName, areas, currentArea, currentIndex } = this.state;
+    const { searchName, areas, currentArea, currentIndex, currentUser } = this.state;
 
     return (
       <div className="list row">
@@ -123,16 +125,16 @@ export default class AreasList extends Component {
                   onClick={() => this.setActiveArea(area, index)}
                   key={index}
                 >
-                  {area.nombre}
+                  {area.name}
                 </li>
               ))}
           </ul>
           
-          <button className="m-3 btn btn-sm btn-danger">
+          {/*<button className="m-3 btn btn-sm btn-danger">
             <Link to={"/areas/add"}>
               Add
             </Link>
-          </button>
+          </button>*/}
         </div>
         <div className="col-md-6">
           {currentArea ? (
@@ -140,16 +142,16 @@ export default class AreasList extends Component {
               <h4>Area</h4>
               <div>
                 <label>
-                  <strong>nombre:</strong>
+                  <strong>name:</strong>
                 </label>{" "}
-                {currentArea.nombre}
+                {currentArea.name}
               </div>
 
               <Link
-                to={"/areas/" + currentArea.id}
+                to={`/userareas/add/${currentUser.id}/${currentArea.id}`}
                 className="badge badge-warning"
               >
-                Edit
+                Seleccionar
               </Link>
             </div>
           ) : (

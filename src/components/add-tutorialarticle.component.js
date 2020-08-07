@@ -20,8 +20,8 @@ export default class AddTutorialarticle extends Component {
             currentItem: null,
             currentIndex: -1,
             id: null,
-            revistaId: "",
-            articuloId: "", 
+            id_tutorial: "",
+            id_article: "", 
 
             submitted: false
         };
@@ -83,28 +83,28 @@ export default class AddTutorialarticle extends Component {
 
     onChangeId_tutorial(e) {
         this.setState({
-          revistaId: e.target.value
+          id_tutorial: e.target.value
         });
       }
     
       onChangeId_article(e) {
         this.setState({
-          articuloId: e.target.value
+          id_article: e.target.value
         });
       }
     
       saveTutorialarticle() {
         var data = {
-            revistaId: this.state.revistaId,
-            articuloId: this.state.articuloId
+            id_tutorial: this.state.id_tutorial,
+            id_article: this.state.id_article
         };
     
         TutorialarticleDataService.create(data)
           .then(response => {
             this.setState({
               id: response.data.id,
-              revistaId: response.data.revistaId,
-              articuloId: response.data.articuloId,
+              id_tutorial: response.data.id_tutorial,
+              id_article: response.data.id_article,
     
               submitted: true
             });
@@ -118,8 +118,8 @@ export default class AddTutorialarticle extends Component {
       newTutorialarticle() {
         this.setState({
           id: null,
-          revistaId: "null",
-          articuloId: "null",
+          id_tutorial: "null",
+          id_article: "null",
     
           submitted: false
         });
@@ -206,28 +206,28 @@ export default class AddTutorialarticle extends Component {
                     ) : (
                             <div>
                                 <div className="form-group">
-                                    <label htmlFor="revistaId">Id_revista</label>
+                                    <label htmlFor="id_tutorial">Id_revista</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="revistaId"
+                                        id="id_tutorial"
                                         required
-                                        value={this.state.revistaId}
+                                        value={this.state.id_tutorial}
                                         onChange={this.onChangeId_tutorial}
-                                        name="revistaId"
+                                        name="id_tutorial"
                                     />
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="articuloId">articuloId</label>
+                                    <label htmlFor="id_article">id_article</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="articuloId"
+                                        id="id_article"
                                         required
-                                        value={this.state.articuloId}
+                                        value={this.state.id_article}
                                         onChange={this.onChangeId_article}
-                                        name="articuloId"
+                                        name="id_article"
                                     />
                                 </div>
 

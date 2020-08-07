@@ -123,7 +123,7 @@ export default class TutorialarticlesList extends Component {
                   onClick={() => this.setActiveTutorialarticle(tutorialarticle, index)}
                   key={index}
                 >
-                  {tutorialarticle.revistaId}
+                  {tutorialarticle.id_tutorial}
                 </li>
               ))}
           </ul>
@@ -140,15 +140,15 @@ export default class TutorialarticlesList extends Component {
               <h4>Revista-article</h4>
               <div>
                 <label>
-                  <strong>revistaId:</strong>
+                  <strong>id_tutorial:</strong>
                 </label>{" "}
-                {currentTutorialarticle.revistaId}
+                {currentTutorialarticle.id_tutorial}
               </div>
               <div>
                 <label>
-                  <strong>articuloId:</strong>
+                  <strong>id_article:</strong>
                 </label>{" "}
-                {currentTutorialarticle.articuloId}
+                {currentTutorialarticle.id_article}
               </div>
 
               <Link
