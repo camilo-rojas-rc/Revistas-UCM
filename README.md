@@ -1,2 +1,2 @@
 # Revistas-UCM
-Proyecto de RevistasaUCM con Reactjs 
+Proyecto de RevistasUCM con Reactjs 
